@@ -17,6 +17,7 @@
         <div class="tab active" data-tab="auth">Authentication</div>
         <div class="tab" data-tab="movies">Movies</div>
         <div class="tab" data-tab="cinemas">Cinemas</div>
+        <div class="tab" data-tab="tickets">Tickets</div>
         <div class="tab" data-tab="profile">User Profile</div>
     </div>
     
@@ -305,6 +306,74 @@
                 <h2>Response</h2>
                 <pre id="profile-response"></pre>
             </div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="tickets">
+        <div class="container">
+            <div class="panel">
+                <h2>Book a Ticket</h2>
+                <form id="bookTicketForm">
+                    <div class="form-group">
+                        <label for="ticket-movieId">Movie ID:</label>
+                        <input type="text" id="ticket-movieId" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ticket-cinemaId">Cinema ID:</label>
+                        <input type="text" id="ticket-cinemaId" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ticket-showTime">Show Time:</label>
+                        <input type="text" id="ticket-showTime" placeholder="e.g. 18:30" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ticket-numberOfSeats">Number of Seats:</label>
+                        <input type="number" id="ticket-numberOfSeats" min="1" value="1" required>
+                    </div>
+                    <button type="submit">Book Ticket</button>
+                </form>
+
+                <h2>Your Tickets</h2>
+                <button id="getTicketsBtn">Get My Tickets</button>
+            </div>
+
+            <div class="panel">
+                <h2>Update Ticket</h2>
+                <form id="updateTicketForm">
+                    <div class="form-group">
+                        <label for="update-ticketId">Ticket ID:</label>
+                        <input type="text" id="update-ticketId" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="update-numberOfSeats">Number of Seats:</label>
+                        <input type="number" id="update-numberOfSeats" min="1" value="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="update-status">Status:</label>
+                        <select id="update-status">
+                            <option value="BOOKED">Booked</option>
+                            <option value="CANCELED">Canceled</option>
+                            <option value="PAID">Paid</option>
+                        </select>
+                    </div>
+                    <button type="submit">Update Ticket</button>
+                </form>
+
+                <h2>Cancel Ticket</h2>
+                <form id="cancelTicketForm">
+                    <div class="form-group">
+                        <label for="cancel-ticketId">Ticket ID:</label>
+                        <input type="text" id="cancel-ticketId" required>
+                    </div>
+                    <button type="submit">Cancel Ticket</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="panel" style="margin-top: 20px;">
+            <h2>Ticket Results</h2>
+            <div id="tickets-results"></div>
+            <pre id="tickets-response"></pre>
         </div>
     </div>
 

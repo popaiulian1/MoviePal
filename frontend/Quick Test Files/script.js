@@ -32,7 +32,7 @@ function getAuthHeader() {
     return token ? { 'Authorization': `Bearer ${token}` } : {};
 }
 
-// API request helper
+// API request helper with improved error handling
 async function apiRequest(endpoint, method = 'GET', data = null) {
     const headers = {
         'Content-Type': 'application/json',
@@ -48,20 +48,60 @@ async function apiRequest(endpoint, method = 'GET', data = null) {
         options.body = JSON.stringify(data);
     }
     
-    const response = await fetch(`${API_BASE_URL}${endpoint}`, options);
+    console.log(`Making ${method} request to ${endpoint}:`, {
+        headers: options.headers,
+        body: options.body
+    });
     
-    if (response.status === 401) {
-        localStorage.removeItem('jwt_token');
-        updateAuthStatus();
-        throw new Error('Unauthorized: Please login again');
+    try {
+        const response = await fetch(`${API_BASE_URL}${endpoint}`, options);
+        
+        console.log(`Response from ${endpoint}:`, {
+            status: response.status,
+            statusText: response.statusText
+        });
+        
+        if (response.status === 401) {
+            localStorage.removeItem('jwt_token');
+            updateAuthStatus();
+            throw new Error('Unauthorized: Please login again');
+        }
+        
+        if (!response.ok) {
+            // Try to get detailed error message from response
+            let errorMessage = response.statusText;
+            const contentType = response.headers.get('content-type');
+            
+            if (contentType && contentType.includes('application/json')) {
+                const errorData = await response.json();
+                if (errorData.error) {
+                    errorMessage = errorData.error;
+                } else if (errorData.message) {
+                    errorMessage = errorData.message;
+                } else {
+                    errorMessage = JSON.stringify(errorData);
+                }
+            } else {
+                try {
+                    errorMessage = await response.text();
+                } catch (e) {
+                    errorMessage = response.statusText;
+                }
+            }
+            
+            throw new Error(`Request failed: ${response.status} - ${errorMessage}`);
+        }
+        
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+            return await response.json();
+        }
+        
+        return await response.text();
+    } catch (error) {
+        console.error(`API Request Error (${endpoint}):`, error);
+        throw error;
     }
-    
-    const contentType = response.headers.get('content-type');
-    if (contentType && contentType.includes('application/json')) {
-        return await response.json();
-    }
-    
-    return await response.text();
 }
 
 // Register
@@ -341,6 +381,279 @@ document.getElementById('updateProfileForm').addEventListener('submit', async (e
     }
 });
 
+// Book a ticket
+document.getElementById('bookTicketForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    // First check if user is logged in
+    const token = localStorage.getItem('jwt_token');
+    if (!token) {
+        document.getElementById('tickets-response').textContent = 'Please log in before booking a ticket';
+        document.querySelector('[data-tab="auth"]').click();
+        return;
+    }
+    
+    try {
+        const ticket = {
+            movieId: document.getElementById('ticket-movieId').value,
+            cinemaId: document.getElementById('ticket-cinemaId').value,
+            showTime: document.getElementById('ticket-showTime').value,
+            numberOfSeats: parseInt(document.getElementById('ticket-numberOfSeats').value)
+            // Don't set userId here, let the backend handle it
+        };
+        
+        // Validate required fields
+        if (!ticket.movieId) {
+            throw new Error('Movie ID is required');
+        }
+        if (!ticket.cinemaId) {
+            throw new Error('Cinema ID is required');
+        }
+        if (!ticket.showTime) {
+            throw new Error('Show time is required');
+        }
+        if (!ticket.numberOfSeats || ticket.numberOfSeats < 1) {
+            throw new Error('Number of seats must be at least 1');
+        }
+        
+        console.log('Sending ticket data:', ticket);
+        
+        const result = await apiRequest('/tickets', 'POST', ticket);
+        console.log('Ticket booking response:', result);
+        
+        document.getElementById('tickets-response').textContent = JSON.stringify(result, null, 2);
+        
+        // Clear form
+        document.getElementById('bookTicketForm').reset();
+        
+        // Refresh tickets
+        getTickets();
+        
+        alert('Ticket booked successfully!');
+    } catch (error) {
+        console.error('Ticket booking error:', error);
+        document.getElementById('tickets-response').textContent = error.message;
+    }
+});
+
+// Test ticket function
+function createTestTicket() {
+    // First check if user is logged in
+    const token = localStorage.getItem('jwt_token');
+    if (!token) {
+        document.getElementById('tickets-response').textContent = 'Please log in before booking a ticket';
+        document.querySelector('[data-tab="auth"]').click();
+        return;
+    }
+    
+    try {
+        // Get the first movie and cinema IDs
+        Promise.all([
+            apiRequest('/movies?page=0&size=1'),
+            apiRequest('/cinemas?page=0&size=1')
+        ]).then(async ([moviesResult, cinemasResult]) => {
+            if (!moviesResult.content || moviesResult.content.length === 0) {
+                document.getElementById('tickets-response').textContent = 'No movies found to create test ticket';
+                return;
+            }
+            
+            if (!cinemasResult.content || cinemasResult.content.length === 0) {
+                document.getElementById('tickets-response').textContent = 'No cinemas found to create test ticket';
+                return;
+            }
+            
+            const movieId = moviesResult.content[0].id;
+            const cinemaId = cinemasResult.content[0].id;
+            
+            const testTicket = {
+                movieId: movieId,
+                cinemaId: cinemaId,
+                showTime: "19:30",
+                numberOfSeats: 2
+            };
+            
+            console.log('Sending test ticket data:', testTicket);
+            
+            try {
+                const result = await apiRequest('/tickets', 'POST', testTicket);
+                console.log('Test ticket response:', result);
+                document.getElementById('tickets-response').textContent = 'Test ticket created: ' + JSON.stringify(result, null, 2);
+                
+                // Refresh tickets
+                getTickets();
+            } catch (error) {
+                console.error('Test ticket error:', error);
+                document.getElementById('tickets-response').textContent = 'Error: ' + error.message;
+            }
+        });
+    } catch (error) {
+        console.error('Error preparing test ticket:', error);
+        document.getElementById('tickets-response').textContent = 'Error preparing test ticket: ' + error.message;
+    }
+}
+
+// Add the event listener for the test button
+document.addEventListener('DOMContentLoaded', () => {
+    // Add a test ticket button to the page
+    const testButton = document.createElement('button');
+    testButton.textContent = 'Create Test Ticket';
+    testButton.id = 'testTicketBtn';
+    testButton.addEventListener('click', createTestTicket);
+    
+    // Add the button after the Get My Tickets button
+    const getTicketsBtn = document.getElementById('getTicketsBtn');
+    if (getTicketsBtn && getTicketsBtn.parentNode) {
+        getTicketsBtn.parentNode.insertBefore(testButton, getTicketsBtn.nextSibling);
+    }
+    
+    // Add click handler for get tickets button
+    if (getTicketsBtn) {
+        getTicketsBtn.addEventListener('click', getTickets);
+        console.log('Get tickets button listener attached');
+    } else {
+        console.error('Get tickets button not found in DOM');
+    }
+    
+    // Add a View Tickets button to the auth status area
+    const authStatus = document.getElementById('authStatus');
+    if (authStatus) {
+        const viewTicketsBtn = document.createElement('button');
+        viewTicketsBtn.textContent = 'View My Tickets';
+        viewTicketsBtn.className = 'view-tickets-btn';
+        viewTicketsBtn.addEventListener('click', () => {
+            showTicketsTab();
+            getTickets();
+        });
+        
+        // Add the button after auth status
+        authStatus.parentNode.insertBefore(viewTicketsBtn, authStatus.nextSibling);
+        
+        // Style the button
+        const btnStyle = document.createElement('style');
+        btnStyle.textContent = `
+            .view-tickets-btn {
+                margin-left: 10px;
+                padding: 5px 10px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+            .view-tickets-btn:hover {
+                background-color: #45a049;
+            }
+        `;
+        document.head.appendChild(btnStyle);
+    }
+});
+
+// Add a function to explicitly show the tickets tab
+function showTicketsTab() {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    
+    document.querySelector('[data-tab="tickets"]').classList.add('active');
+    document.getElementById('tickets').classList.add('active');
+}
+
+// Update the getTickets function
+async function getTickets() {
+    try {
+        // Check if user is logged in
+        const token = localStorage.getItem('jwt_token');
+        if (!token) {
+            document.getElementById('tickets-response').textContent = 'Please log in before viewing tickets';
+            document.getElementById('tickets-results').innerHTML = '<p>Please log in to view your tickets</p>';
+            document.querySelector('[data-tab="auth"]').click();
+            return;
+        }
+        
+        console.log('Fetching user tickets with token...');
+        document.getElementById('tickets-response').textContent = 'Loading tickets...';
+        document.getElementById('tickets-results').innerHTML = '<p>Loading your tickets...</p>';
+        
+        const result = await apiRequest('/tickets');
+        console.log('Tickets fetched:', result);
+        
+        document.getElementById('tickets-response').textContent = JSON.stringify(result, null, 2);
+        
+        // Handle empty array
+        if (Array.isArray(result) && result.length === 0) {
+            document.getElementById('tickets-results').innerHTML = '<p>No tickets found. Try booking a ticket first!</p>';
+            return;
+        }
+        
+        // Handle array of tickets
+        if (Array.isArray(result)) {
+            displayTickets(result);
+        } else {
+            console.error('Unexpected tickets response format:', result);
+            document.getElementById('tickets-response').textContent += '\n\nWarning: Unexpected response format. Expected an array.';
+            document.getElementById('tickets-results').innerHTML = '<p>Error: Unexpected response format from server</p>';
+        }
+        
+        // Show the tickets tab
+        showTicketsTab();
+    } catch (error) {
+        console.error('Error fetching tickets:', error);
+        document.getElementById('tickets-response').textContent = error.message;
+        document.getElementById('tickets-results').innerHTML = '<p>Error loading tickets: ' + error.message + '</p>';
+    }
+}
+
+// Make the function global
+window.showTicketsTab = showTicketsTab;
+
+// Update ticket
+document.getElementById('updateTicketForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    try {
+        const ticketId = document.getElementById('update-ticketId').value;
+        const ticket = {};
+        
+        const numberOfSeats = document.getElementById('update-numberOfSeats').value;
+        if (numberOfSeats) {
+            ticket.numberOfSeats = parseInt(numberOfSeats);
+        }
+        
+        const status = document.getElementById('update-status').value;
+        if (status) {
+            ticket.status = status;
+        }
+        
+        const result = await apiRequest(`/tickets/${ticketId}`, 'PUT', ticket);
+        document.getElementById('tickets-response').textContent = JSON.stringify(result, null, 2);
+        
+        // Clear form
+        document.getElementById('updateTicketForm').reset();
+        
+        // Refresh tickets
+        getTickets();
+    } catch (error) {
+        document.getElementById('tickets-response').textContent = error.message;
+    }
+});
+
+// Cancel ticket
+document.getElementById('cancelTicketForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    try {
+        const ticketId = document.getElementById('cancel-ticketId').value;
+        
+        await apiRequest(`/tickets/${ticketId}`, 'DELETE');
+        document.getElementById('tickets-response').textContent = 'Ticket canceled successfully';
+        
+        // Clear form
+        document.getElementById('cancelTicketForm').reset();
+        
+        // Refresh tickets
+        getTickets();
+    } catch (error) {
+        document.getElementById('tickets-response').textContent = error.message;
+    }
+});
+
 // Helper function to display movies
 function displayMovies(movies, cinema) {
     const container = document.getElementById('movies-results');
@@ -403,99 +716,44 @@ function displayCinemas(cinemas) {
     });
 }
 
-// Edit movie
-async function editMovie(id) {
-    try {
-        const movie = await apiRequest(`/movies/${id}`);
-        
-        // Fill form
-        document.getElementById('movie-title').value = movie.title || '';
-        document.getElementById('movie-genre').value = movie.genre || '';
-        document.getElementById('movie-director').value = movie.director || '';
-        document.getElementById('movie-rating').value = movie.rating || '';
-        document.getElementById('movie-description').value = movie.description || '';
-        document.getElementById('movie-posterUrl').value = movie.posterUrl || '';
-        document.getElementById('movie-trailerUrl').value = movie.trailerUrl || '';
-        document.getElementById('movie-releaseDate').value = movie.releaseDate || '';
-        document.getElementById('movie-runtime').value = movie.runtime || '';
-        document.getElementById('movie-language').value = movie.language || '';
-        document.getElementById('movie-cast').value = movie.cast || '';
-        document.getElementById('movie-status').value = movie.status || 'SHOWING';
-        document.getElementById('movie-ticketPrice').value = movie.ticketPrice || '';
-        document.getElementById('movie-cinemaId').value = movie.cinemaId || '';
-        document.getElementById('movie-id-for-update').value = movie.id;
-        
-        // Change button text
-        document.getElementById('addMovieBtn').textContent = 'Update Movie';
-        
-        // Switch to movies tab and scroll to form
-        document.querySelector('[data-tab="movies"]').click();
-        document.getElementById('addMovieForm').scrollIntoView({ behavior: 'smooth' });
-    } catch (error) {
-        alert(`Error loading movie: ${error.message}`);
+// Helper function to display tickets with flexible format support
+function displayTickets(tickets) {
+    const container = document.getElementById('tickets-results');
+    container.innerHTML = '';
+    
+    if (!tickets || tickets.length === 0) {
+        container.innerHTML = '<p>No tickets found</p>';
+        return;
     }
-}
-
-// Delete movie
-async function deleteMovie(id) {
-    if (confirm('Are you sure you want to delete this movie?')) {
-        try {
-            await apiRequest(`/movies/${id}`, 'DELETE');
-            alert('Movie deleted successfully');
-            
-            // Refresh movies list
-            document.getElementById('getMoviesForm').dispatchEvent(new Event('submit'));
-        } catch (error) {
-            alert(`Error deleting movie: ${error.message}`);
+    
+    console.log('Displaying tickets:', tickets);
+    
+    tickets.forEach(ticketData => {
+        // Handle both formats: {ticket, movie, cinema} or direct ticket object
+        const ticket = ticketData.ticket || ticketData;
+        const movie = ticketData.movie || null;
+        const cinema = ticketData.cinema || null;
+        
+        const card = document.createElement('div');
+        card.className = 'movie-card';
+        
+        // Safe access with fallbacks
+        let content = `
+            <h3>${movie ? movie.title : (ticket.movieTitle || 'Unknown Movie')}</h3>
+            <p><strong>Cinema:</strong> ${cinema ? cinema.name : (ticket.cinemaName || 'Unknown Cinema')}</p>
+            <p><strong>Show Time:</strong> ${ticket.showTime || 'Not specified'}</p>
+            <p><strong>Seats:</strong> ${ticket.numberOfSeats || '1'}</p>
+            <p><strong>Total Price:</strong> $${typeof ticket.totalPrice === 'number' ? ticket.totalPrice.toFixed(2) : '0.00'}</p>
+            <p><strong>Status:</strong> ${ticket.status || 'BOOKED'}</p>
+            <p><strong>Ticket ID:</strong> ${ticket.id}</p>
+        `;
+        
+        // Add warning for incomplete data
+        if ((movie && movie.title === 'Unknown Movie') || (cinema && cinema.name === 'Unknown Cinema')) {
+            content += `<p class="warning">⚠️ This ticket has incomplete data. The movie or cinema may have been deleted.</p>`;
         }
-    }
-}
-
-// Edit cinema
-async function editCinema(id) {
-    try {
-        const cinema = await apiRequest(`/cinemas/${id}`);
         
-        // Fill form
-        document.getElementById('cinema-name').value = cinema.name || '';
-        document.getElementById('cinema-location').value = cinema.location || '';
-        document.getElementById('cinema-contactNumber').value = cinema.contactNumber || '';
-        document.getElementById('cinema-email').value = cinema.email || '';
-        document.getElementById('cinema-website').value = cinema.website || '';
-        document.getElementById('cinema-openingHours').value = cinema.openingHours || '';
-        document.getElementById('cinema-id-for-update').value = cinema.id;
-        
-        // Change button text
-        document.getElementById('addCinemaBtn').textContent = 'Update Cinema';
-        
-        // Switch to cinemas tab and scroll to form
-        document.querySelector('[data-tab="cinemas"]').click();
-        document.getElementById('addCinemaForm').scrollIntoView({ behavior: 'smooth' });
-    } catch (error) {
-        alert(`Error loading cinema: ${error.message}`);
-    }
+        card.innerHTML = content;
+        container.appendChild(card);
+    });
 }
-
-// Delete cinema
-async function deleteCinema(id) {
-    if (confirm('Are you sure you want to delete this cinema? This will also delete all movies associated with this cinema.')) {
-        try {
-            await apiRequest(`/cinemas/${id}`, 'DELETE');
-            alert('Cinema deleted successfully');
-            
-            // Refresh cinemas list
-            document.getElementById('getCinemasForm').dispatchEvent(new Event('submit'));
-        } catch (error) {
-            alert(`Error deleting cinema: ${error.message}`);
-        }
-    }
-}
-
-// Make these functions global so they can be called from inline handlers
-window.editMovie = editMovie;
-window.deleteMovie = deleteMovie;
-window.editCinema = editCinema;
-window.deleteCinema = deleteCinema;
-
-// Initialize
-updateAuthStatus();
