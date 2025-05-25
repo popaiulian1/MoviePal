@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoviePal API Tester</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>MoviePal API Tester</h1>
+    
+    <div class="auth-status" id="authStatus">
+        Not logged in
+    </div>
+    
+    <div class="tabs">
+        <div class="tab active" data-tab="auth">Authentication</div>
+        <div class="tab" data-tab="movies">Movies</div>
+        <div class="tab" data-tab="cinemas">Cinemas</div>
+        <div class="tab" data-tab="profile">User Profile</div>
+    </div>
+    
+    <div class="tab-content active" id="auth">
+        <div class="container">
+            <div class="panel">
+                <h2>Register</h2>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="reg-username">Username:</label>
+                        <input type="text" id="reg-username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-email">Email:</label>
+                        <input type="email" id="reg-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-password">Password:</label>
+                        <input type="password" id="reg-password" required>
+                    </div>
+                    <button type="submit">Register</button>
+                </form>
+            </div>
+            
+            <div class="panel">
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="login-username">Username/Email:</label>
+                        <input type="text" id="login-username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password:</label>
+                        <input type="password" id="login-password" required>
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+                <div style="margin-top: 20px;">
+                    <button id="refreshToken">Refresh Token</button>
+                    <button id="logout">Logout</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel" style="margin-top: 20px;">
+            <h2>Response</h2>
+            <pre id="auth-response"></pre>
+        </div>
+    </div>
+    
+    <div class="tab-content" id="movies">
+        <div class="container">
+            <div class="panel">
+                <h2>Get Movies</h2>
+                <form id="getMoviesForm">
+                    <div class="form-group">
+                        <label for="movies-page">Page:</label>
+                        <input type="number" id="movies-page" value="0" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="movies-size">Size:</label>
+                        <input type="number" id="movies-size" value="10" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="movies-sort">Sort By:</label>
+                        <select id="movies-sort">
+                            <option value="title">Title</option>
+                            <option value="releaseDate">Release Date</option>
+                            <option value="rating">Rating</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="include-cinema-details">
+                            Include Cinema Details
+                        </label>
+                    </div>
+                    <button type="submit">Get Movies</button>
+                </form>
+                
+                <h2>Search Movies</h2>
+                <form id="searchMoviesForm">
+                    <div class="form-group">
+                        <label for="movies-search">Search Query:</label>
+                        <input type="text" id="movies-search" required>
+                    </div>
+                    <button type="submit">Search</button>
+                </form>
+                
+                <h2>Get Movie by ID</h2>
+                <form id="getMovieByIdForm">
+                    <div class="form-group">
+                        <label for="movie-id">Movie ID:</label>
+                        <input type="text" id="movie-id" required>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="get-movie-with-details">
+                            Get With Cinema Details
+                        </label>
+                    </div>
+                    <button type="submit">Get Movie</button>
+                </form>
+            </div>
+            
+            <div class="panel">
+                <h2>Add/Update Movie</h2>
+                <form id="addMovieForm">
+                    <div class="form-group">
+                        <label for="movie-title">Title:</label>
+                        <input type="text" id="movie-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="movie-genre">Genre:</label>
+                        <input type="text" id="movie-genre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="movie-director">Director:</label>
+                        <input type="text" id="movie-director" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="movie-rating">Rating (0-10):</label>
+                        <input type="number" id="movie-rating" min="0" max="10" step="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="movie-description">Description:</label>
+                        <textarea id="movie-description" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="movie-posterUrl">Poster URL:</label>
+                        <input type="url" id="movie-posterUrl">
+                    </div>
+                    <div class="form-group">
+                        <label for="movie-trailerUrl">Trailer URL:</label>
+                        <input type="url" id="movie-trailerUrl">
+                    </div>
+                    <div class="form-group">
+                        <label for="movie-releaseDate">Release Date (YYYY-MM-DD):</label>
+                        <input type="text" id="movie-releaseDate" pattern="\d{4}-\d{2}-\d{2}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="movie-runtime">Runtime:</label>
+                        <input type="text" id="movie-runtime">
+                    </div>
+                    <div class="form-group">
+                        <label for="movie-language">Language:</label>
+                        <input type="text" id="movie-language">
+                    </div>
+                    <div class="form-group">
+                        <label for="movie-cast">Cast:</label>
+                        <input type="text" id="movie-cast">
+                    </div>
+                    <div class="form-group">
+                        <label for="movie-status">Status:</label>
+                        <select id="movie-status">
+                            <option value="SHOWING">Showing</option>
+                            <option value="COMING_SOON">Coming Soon</option>
+                            <option value="ARCHIVED">Archived</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="movie-ticketPrice">Ticket Price:</label>
+                        <input type="text" id="movie-ticketPrice" pattern="\d+(\.\d{1,2})?" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="movie-cinemaId">Cinema ID:</label>
+                        <input type="text" id="movie-cinemaId" required>
+                    </div>
+                    <input type="hidden" id="movie-id-for-update">
+                    <button type="submit" id="addMovieBtn">Add Movie</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="panel" style="margin-top: 20px;">
+            <h2>Movie Results</h2>
+            <div id="movies-results" class="movie-grid"></div>
+            <pre id="movies-response"></pre>
+        </div>
+    </div>
+    
+    <div class="tab-content" id="cinemas">
+        <div class="container">
+            <div class="panel">
+                <h2>Get Cinemas</h2>
+                <form id="getCinemasForm">
+                    <div class="form-group">
+                        <label for="cinemas-page">Page:</label>
+                        <input type="number" id="cinemas-page" value="0" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="cinemas-size">Size:</label>
+                        <input type="number" id="cinemas-size" value="10" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="cinemas-sort">Sort By:</label>
+                        <select id="cinemas-sort">
+                            <option value="name">Name</option>
+                            <option value="location">Location</option>
+                        </select>
+                    </div>
+                    <button type="submit">Get Cinemas</button>
+                </form>
+                
+                <h2>Search Cinemas</h2>
+                <form id="searchCinemasForm">
+                    <div class="form-group">
+                        <label for="search-type">Search By:</label>
+                        <select id="search-type">
+                            <option value="name">Name</option>
+                            <option value="location">Location</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="cinemas-search">Search Query:</label>
+                        <input type="text" id="cinemas-search" required>
+                    </div>
+                    <button type="submit">Search</button>
+                </form>
+                
+                <h2>Get Cinema by ID</h2>
+                <form id="getCinemaByIdForm">
+                    <div class="form-group">
+                        <label for="cinema-id">Cinema ID:</label>
+                        <input type="text" id="cinema-id" required>
+                    </div>
+                    <button type="submit">Get Cinema</button>
+                </form>
+            </div>
+            
+            <div class="panel">
+                <h2>Add/Update Cinema</h2>
+                <form id="addCinemaForm">
+                    <div class="form-group">
+                        <label for="cinema-name">Name:</label>
+                        <input type="text" id="cinema-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cinema-location">Location:</label>
+                        <input type="text" id="cinema-location" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cinema-contactNumber">Contact Number:</label>
+                        <input type="text" id="cinema-contactNumber">
+                    </div>
+                    <div class="form-group">
+                        <label for="cinema-email">Email:</label>
+                        <input type="email" id="cinema-email">
+                    </div>
+                    <div class="form-group">
+                        <label for="cinema-website">Website:</label>
+                        <input type="url" id="cinema-website">
+                    </div>
+                    <div class="form-group">
+                        <label for="cinema-openingHours">Opening Hours:</label>
+                        <input type="text" id="cinema-openingHours">
+                    </div>
+                    <input type="hidden" id="cinema-id-for-update">
+                    <button type="submit" id="addCinemaBtn">Add Cinema</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="panel" style="margin-top: 20px;">
+            <h2>Cinema Results</h2>
+            <div id="cinemas-results"></div>
+            <pre id="cinemas-response"></pre>
+        </div>
+    </div>
+    
+    <div class="tab-content" id="profile">
+        <div class="panel">
+            <h2>User Profile</h2>
+            <button id="getUserProfile">Get My Profile</button>
+            
+            <h2>Update Profile</h2>
+            <form id="updateProfileForm">
+                <div class="form-group">
+                    <label for="profile-email">Email:</label>
+                    <input type="email" id="profile-email" required>
+                </div>
+                <button type="submit">Update Profile</button>
+            </form>
+            
+            <div style="margin-top: 20px;">
+                <h2>Response</h2>
+                <pre id="profile-response"></pre>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+[{
+  "_id": {
+    "$oid": "68330b537f52fa8a748a22b7"
+  },
+  "username": "testuser",
+  "email": "test@example.com",
+  "password": "$2a$10$Rm5fMonxdmL3z.T6RjCzEeVf7hkEb64EDX8U1rOzJI8eguh08bSku",
+  "roles": [
+    "USER"
+  ],
+  "_class": "com.moviepal_api.Models.User"
+},
+{
+  "_id": {
+    "$oid": "68331588adea60662ff9fcc0"
+  },
+  "username": "test2",
+  "email": "test2@example.com",
+  "password": "$2a$10$z1m7Y30WN0DG7EOXNO8WqeKGO0d9L1Iw3pjlo..FOprQVS6EJYfnO",
+  "roles": [
+    "USER"
+  ],
+  "_class": "com.moviepal_api.Models.User"
+}]

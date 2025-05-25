@@ -1,0 +1,24 @@
+[{
+  "_id": {
+    "$oid": "68330386f1db867e3eb4f9c1"
+  },
+  "id": 1,
+  "name": "CinemaOne LaserPlex",
+  "location": "Brasov, Str. Zaharia Stancu 1, Coresi Shopping Resort",
+  "contactNumber": "0319663",
+  "email": "contact@cinemaone.ro",
+  "website": "cinemaone.ro",
+  "openingHours": "10:00-22:00"
+},
+{
+  "_id": {
+    "$oid": "68330386f1db867e3eb4f9c2"
+  },
+  "id": 2,
+  "name": "Cinema City",
+  "location": "Brasov, Bulevardul 15 Noiembrie 78, AFI Brasov",
+  "contactNumber": "0314130540",
+  "email": "brasov@cinemacity.ro",
+  "website": "cinemacity.ro",
+  "openingHours": "10:00-22:30"
+}]

@@ -1,0 +1,356 @@
+[{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c70"
+  },
+  "title": "Inception",
+  "genre": "Sci-Fi, Action",
+  "director": "Christopher Nolan",
+  "rating": 8.8,
+  "description": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=YoHD9XEInc0",
+  "releaseDate": "2010-07-16",
+  "runtime": "148 min",
+  "language": "English, Japanese, French",
+  "cast": "Leonardo DiCaprio, Joseph Gordon-Levitt, Ellen Page, Tom Hardy, Ken Watanabe",
+  "status": "SHOWING",
+  "showTimes": [
+    "14:30",
+    "18:00",
+    "21:15"
+  ],
+  "ticketPrice": "15.99",
+  "cinemaId": "645faa9e0d2b15acb3456e01"
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c71"
+  },
+  "title": "The Shawshank Redemption",
+  "genre": "Drama",
+  "director": "Frank Darabont",
+  "rating": 9.3,
+  "description": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=6hB3S9bIaco",
+  "releaseDate": "1994-09-23",
+  "runtime": "142 min",
+  "language": "English",
+  "cast": "Tim Robbins, Morgan Freeman, Bob Gunton, William Sadler",
+  "status": "SHOWING",
+  "showTimes": [
+    "15:45",
+    "19:30"
+  ],
+  "ticketPrice": "14.99",
+  "cinemaId": "645faa9e0d2b15acb3456e01"
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c72"
+  },
+  "title": "The Dark Knight",
+  "genre": "Action, Crime, Drama",
+  "director": "Christopher Nolan",
+  "rating": 9,
+  "description": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=EXeTwQWrcwY",
+  "releaseDate": "2008-07-18",
+  "runtime": "152 min",
+  "language": "English, Mandarin",
+  "cast": "Christian Bale, Heath Ledger, Aaron Eckhart, Michael Caine",
+  "status": "SHOWING",
+  "showTimes": [
+    "13:00",
+    "16:30",
+    "20:00"
+  ],
+  "ticketPrice": "16.99",
+  "cinemaId": "645faa9e0d2b15acb3456e02"
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c73"
+  },
+  "title": "Pulp Fiction",
+  "genre": "Crime, Drama",
+  "director": "Quentin Tarantino",
+  "rating": 8.9,
+  "description": "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=s7EdQ4FqbhY",
+  "releaseDate": "1994-10-14",
+  "runtime": "154 min",
+  "language": "English, Spanish, French",
+  "cast": "John Travolta, Uma Thurman, Samuel L. Jackson, Bruce Willis",
+  "status": "SHOWING",
+  "showTimes": [
+    "17:15",
+    "20:45"
+  ],
+  "ticketPrice": "13.99",
+  "cinemaId": "645faa9e0d2b15acb3456e02"
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c74"
+  },
+  "title": "The Godfather",
+  "genre": "Crime, Drama",
+  "director": "Francis Ford Coppola",
+  "rating": 9.2,
+  "description": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=sY1S34973zA",
+  "releaseDate": "1972-03-24",
+  "runtime": "175 min",
+  "language": "English, Italian, Latin",
+  "cast": "Marlon Brando, Al Pacino, James Caan, Richard S. Castellano",
+  "status": "ARCHIVED",
+  "showTimes": [
+    "14:00",
+    "18:30"
+  ],
+  "ticketPrice": "12.99",
+  "cinemaId": "645faa9e0d2b15acb3456e01"
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c75"
+  },
+  "title": "Parasite",
+  "genre": "Drama, Thriller, Comedy",
+  "director": "Bong Joon-ho",
+  "rating": 8.6,
+  "description": "Greed and class discrimination threaten the newly formed symbiotic relationship between the wealthy Park family and the destitute Kim clan.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=isOGD_7hNIY",
+  "releaseDate": "2019-10-11",
+  "runtime": "132 min",
+  "language": "Korean, English",
+  "cast": "Song Kang-ho, Lee Sun-kyun, Cho Yeo-jeong, Choi Woo-shik",
+  "status": "SHOWING",
+  "showTimes": [
+    "15:00",
+    "19:15",
+    "22:00"
+  ],
+  "ticketPrice": "17.99",
+  "cinemaId": "645faa9e0d2b15acb3456e01"
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c76"
+  },
+  "title": "The Matrix",
+  "genre": "Action, Sci-Fi",
+  "director": "Lana Wachowski, Lilly Wachowski",
+  "rating": 8.7,
+  "description": "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=vKQi3bBA1y8",
+  "releaseDate": "1999-03-31",
+  "runtime": "136 min",
+  "language": "English",
+  "cast": "Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss, Hugo Weaving",
+  "status": "ARCHIVED",
+  "showTimes": [
+    "16:15",
+    "20:30"
+  ],
+  "ticketPrice": "14.50",
+  "cinemaId": "645faa9e0d2b15acb3456e02"
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c77"
+  },
+  "title": "Spirited Away",
+  "genre": "Animation, Adventure, Family",
+  "director": "Hayao Miyazaki",
+  "rating": 8.6,
+  "description": "During her family's move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches, and spirits, and where humans are changed into beasts.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=ByXuk9QqQkk",
+  "releaseDate": "2001-07-20",
+  "runtime": "125 min",
+  "language": "Japanese",
+  "cast": "Rumi Hiiragi, Miyu Irino, Mari Natsuki, Takashi Naitô",
+  "status": "SHOWING",
+  "showTimes": [
+    "13:30",
+    "16:45",
+    "19:45"
+  ],
+  "ticketPrice": "15.50",
+  "cinemaId": "645faa9e0d2b15acb3456e01"
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c78"
+  },
+  "title": "Goodfellas",
+  "genre": "Biography, Crime, Drama",
+  "director": "Martin Scorsese",
+  "rating": 8.7,
+  "description": "The story of Henry Hill and his life in the mob, covering his relationship with his wife Karen Hill and his mob partners Jimmy Conway and Tommy DeVito in the Italian-American crime syndicate.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/aKuFiU82s5ISJpGZp7YkIr3kCUd.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=qo5jJpHtI1Y",
+  "releaseDate": "1990-09-21",
+  "runtime": "146 min",
+  "language": "English, Italian",
+  "cast": "Robert De Niro, Ray Liotta, Joe Pesci, Lorraine Bracco",
+  "status": "ARCHIVED",
+  "showTimes": [
+    "14:45",
+    "18:15",
+    "21:30"
+  ],
+  "ticketPrice": "13.99",
+  "cinemaId": "645faa9e0d2b15acb3456e02"
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c79"
+  },
+  "title": "The Lord of the Rings: The Fellowship of the Ring",
+  "genre": "Adventure, Drama, Fantasy",
+  "director": "Peter Jackson",
+  "rating": 8.8,
+  "description": "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=V75dMMIW2B4",
+  "releaseDate": "2001-12-19",
+  "runtime": "178 min",
+  "language": "English, Sindarin",
+  "cast": "Elijah Wood, Ian McKellen, Orlando Bloom, Sean Bean",
+  "status": "SHOWING",
+  "showTimes": [
+    "13:15",
+    "17:00",
+    "20:15"
+  ],
+  "ticketPrice": "16.99",
+  "cinemaId": "645faa9e0d2b15acb3456e01"
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c7a"
+  },
+  "title": "Interstellar",
+  "genre": "Adventure, Drama, Sci-Fi",
+  "director": "Christopher Nolan",
+  "rating": 8.6,
+  "description": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=zSWdZVtXT7E",
+  "releaseDate": "2014-11-07",
+  "runtime": "169 min",
+  "language": "English",
+  "cast": "Matthew McConaughey, Anne Hathaway, Jessica Chastain, Michael Caine",
+  "status": "SHOWING",
+  "showTimes": [
+    "14:00",
+    "17:30",
+    "21:00"
+  ],
+  "ticketPrice": "18.50",
+  "cinemaId": "645faa9e0d2b15acb3456e02"
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c7b"
+  },
+  "title": "Whiplash",
+  "genre": "Drama, Music",
+  "director": "Damien Chazelle",
+  "rating": 8.5,
+  "description": "A promising young drummer enrolls at a cut-throat music conservatory where his dreams of greatness are mentored by an instructor who will stop at nothing to realize a student's potential.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/7fn624j5lj3xTme2SgiLCeuedmO.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=7d_jQycdQGo",
+  "releaseDate": "2014-10-10",
+  "runtime": "106 min",
+  "language": "English",
+  "cast": "Miles Teller, J.K. Simmons, Melissa Benoist, Paul Reiser",
+  "status": "SHOWING",
+  "showTimes": [
+    "16:00",
+    "19:00",
+    "21:45"
+  ],
+  "ticketPrice": "15.50",
+  "cinemaId": "645faa9e0d2b15acb3456e01"
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c7c"
+  },
+  "title": "The Silence of the Lambs",
+  "genre": "Crime, Drama, Thriller",
+  "director": "Jonathan Demme",
+  "rating": 8.6,
+  "description": "A young FBI cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer, a madman who skins his victims.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/uS9m8OBk1A8eM9I042bx8XXpqAq.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=W6Mm8Sbe__o",
+  "releaseDate": "1991-02-14",
+  "runtime": "118 min",
+  "language": "English",
+  "cast": "Jodie Foster, Anthony Hopkins, Scott Glenn, Ted Levine",
+  "status": "ARCHIVED",
+  "showTimes": [
+    "15:30",
+    "18:45",
+    "22:15"
+  ],
+  "ticketPrice": "14.50",
+  "cinemaId": "645faa9e0d2b15acb3456e02"
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c7d"
+  },
+  "title": "Your Name",
+  "genre": "Animation, Drama, Fantasy",
+  "director": "Makoto Shinkai",
+  "rating": 8.4,
+  "description": "Two strangers find themselves linked in a bizarre way. When a connection forms, will distance be the only thing to keep them apart?",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/q719jXXEzOoYaps6babgKnONONX.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=xU47nhruN-Q",
+  "releaseDate": "2016-08-26",
+  "runtime": "106 min",
+  "language": "Japanese",
+  "cast": "Ryunosuke Kamiki, Mone Kamishiraishi, Ryo Narita, Aoi Yuki",
+  "status": "SHOWING",
+  "showTimes": [
+    "14:15",
+    "17:45",
+    "20:30"
+  ],
+  "ticketPrice": "16.50",
+  "cinemaId": "645faa9e0d2b15acb3456e01"
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c7e"
+  },
+  "title": "Fight Club",
+  "genre": "Drama",
+  "director": "David Fincher",
+  "rating": 8.8,
+  "description": "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into something much, much more.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/lRWtnfechJpn6JWLHsWafv2AXOl.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=SUXWAEX2jLg",
+  "releaseDate": "1999-10-15",
+  "runtime": "139 min",
+  "language": "English",
+  "cast": "Brad Pitt, Edward Norton, Helena Bonham Carter, Meat Loaf",
+  "status": "SHOWING",
+  "showTimes": [
+    "15:15",
+    "18:30",
+    "21:45"
+  ],
+  "ticketPrice": "14.99",
+  "cinemaId": "645faa9e0d2b15acb3456e02"
+}]
