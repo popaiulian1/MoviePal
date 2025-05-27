@@ -1,77 +1,87 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
-html, body {
-  margin: 0;
-  padding: 0;
-}
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #3e2723;
+  background-color: #271842;
   padding: 0.7rem 0.7rem;
-  margin: 0rem;
   width: 100%;
-  height: 4rem;
+  height: 5rem;
   color: white;
 
   .logo {
+    flex: 1;                      // Take up remaining space to center the logo
+    display: flex;
+    justify-content: center;
     font-size: 1rem;
     font-weight: bold;
 
     .logo-img {
-      width: 24px;
-      height: 24px;
+      width: 34px;
+      height: auto;
       margin-right: 8px;
       vertical-align: middle;
     }
   }
 
-  .nav-links {
+  .nav-left, .nav-right {
     display: flex;
     align-items: center;
     gap: 3.3rem;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
 
     a {
-      color: white;
+      color: #f2ebf5;
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 450;
+      position: relative;
       transition: color 0.3s;
 
+      &::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -18px;
+        width: 0%;
+        height: 2px;
+        box-shadow: 0 -8px 12px 2px rgba(145, 75, 183, 0.4);
+        opacity: 0;
+        background-color: #aa4edb;
+        transition: width 0.3s, opacity 0.3s;
+      }
+
       &:hover {
-        color: #ffcc80;
+        color: #aa4edb;
+
+        &::after {
+          width: 100%;
+          opacity: 1;
+        }
       }
     }
 
-    .search-container {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+    &.nav-right {
+      .search-container {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
 
-      .search-input {
-        padding: 0.2rem;
-        border-radius: 4px;
-        border: 0;
-        outline: none;
-        background-color: #dcd7cd;
-      }
+        .search-input {
+          padding: 0.2rem;
+          border-radius: 3px;
+          border: 0;
+          outline: none;
+          background-color: #e6e4e7a0;
+        }
 
-      .icon-img {
-        width: 20px;
-        height: 20px;
-        vertical-align: middle;
-        cursor: pointer;
+        .icon-img {
+          width: 26px;
+          height: 25px;
+          vertical-align: middle;
+          cursor: pointer;
+        }
       }
     }
-  }
-
-  .search-icon {
-    font-size: 1rem;
-    cursor: pointer;
   }
 }
