@@ -3,11 +3,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #271842;
+  background-color: #574BFF;
   padding: 0.7rem 0.7rem;
   width: 100%;
   height: 5rem;
-  color: white;
+  color: #f3ff4b;
 
   .logo {
     flex: 1;                      // Take up remaining space to center the logo
@@ -17,11 +17,15 @@
     font-weight: bold;
 
     .logo-img {
-      width: 34px;
+      width: 250px;
       height: auto;
       margin-right: 8px;
       vertical-align: middle;
     }
+  }
+
+  .nav-left{
+    margin-left: 2rem;
   }
 
   .nav-left, .nav-right {
@@ -31,9 +35,9 @@
     font-size: 1.1rem;
 
     a {
-      color: #f2ebf5;
+      color: #f3ff4b;
       text-decoration: none;
-      font-weight: 450;
+      font-weight: bold;
       position: relative;
       transition: color 0.3s;
 
@@ -45,14 +49,14 @@
         bottom: -18px;
         width: 0%;
         height: 2px;
-        box-shadow: 0 -8px 12px 2px rgba(145, 75, 183, 0.4);
+        box-shadow: 0 -8px 12px 2px rgba(243, 255, 75, 0.4);
         opacity: 0;
-        background-color: #aa4edb;
+        background-color: #f3ff4b;
         transition: width 0.3s, opacity 0.3s;
       }
 
       &:hover {
-        color: #aa4edb;
+        color: #f3ff4b;
 
         &::after {
           width: 100%;
@@ -62,6 +66,7 @@
     }
 
     &.nav-right {
+      margin-right: 2rem;
       .search-container {
         display: flex;
         align-items: center;
@@ -69,10 +74,12 @@
 
         .search-input {
           padding: 0.2rem;
-          border-radius: 3px;
+          border-radius: 6px;
           border: 0;
           outline: none;
           background-color: #e6e4e7a0;
+          color: #926D8C;
+          font-weight: bold;
         }
 
         .icon-img {
