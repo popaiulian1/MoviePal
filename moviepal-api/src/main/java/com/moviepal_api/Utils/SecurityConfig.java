@@ -27,6 +27,7 @@ public class SecurityConfig {
         http.cors().and()
                 .csrf().disable().authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/movies/**").permitAll()
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
@@ -41,7 +42,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowedOrigins(List.of(
-                "http://localhost:3000" // Development frontend
+                "http://localhost:4200" // Development frontend
         ));
 
 //        configuration.setAllowedOriginPatterns(List.of(

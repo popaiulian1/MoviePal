@@ -1,0 +1,14 @@
+<div class="welcome-container">
+  <h1>Welcome to MoviePal!</h1>
+  <div class="poster-grid">
+    <div
+      class="poster"
+      *ngFor="let movie of movies">
+      
+      <img
+        [src]="movie.posterUrl"
+        [alt]="movie.title" />
+    </div>
+  </div>
+
+</div>

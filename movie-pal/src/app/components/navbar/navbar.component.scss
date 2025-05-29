@@ -3,11 +3,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #574BFF;
+  background-color: #1d988c;
   padding: 0.7rem 0.7rem;
   width: 100%;
   height: 5rem;
-  color: #f3ff4b;
+  color: white;
 
   .logo {
     flex: 1;                      // Take up remaining space to center the logo
@@ -35,7 +35,7 @@
     font-size: 1.1rem;
 
     a {
-      color: #f3ff4b;
+      color: white;
       text-decoration: none;
       font-weight: bold;
       position: relative;
@@ -49,14 +49,14 @@
         bottom: -18px;
         width: 0%;
         height: 2px;
-        box-shadow: 0 -8px 12px 2px rgba(243, 255, 75, 0.4);
+        box-shadow: 0 -8px 12px 2px rgba(255, 255, 255, 0.4);
         opacity: 0;
-        background-color: #f3ff4b;
+        background-color: white;
         transition: width 0.3s, opacity 0.3s;
       }
 
       &:hover {
-        color: #f3ff4b;
+        color: white;
 
         &::after {
           width: 100%;
@@ -77,8 +77,8 @@
           border-radius: 6px;
           border: 0;
           outline: none;
-          background-color: #e6e4e7a0;
-          color: #926D8C;
+          background-color: #eeeeeea0;
+          color: white;
           font-weight: bold;
         }
 
