@@ -35,23 +35,31 @@ export class HomeComponent implements OnInit {
   }
 
   loadMovies(): void {
-    this.loading = true;
-    this.http.get<featuredMovie[]>(`${BASE_API_URL}/movies?page=${this.page}&size=${this.size}`)
-      .subscribe({
-        next: (data) => {
-          if (data.length > 0) {
+  this.loading = true;
+  console.log('Fetching movies with parameters:', { page: this.page, size: this.size });
+  
+  this.http.get<featuredMovie[]>(`${BASE_API_URL}/movies?page=${this.page}&size=${this.size}`)
+    .subscribe({
+      next: (data) => {
+        console.log('API Response For Movies:', data);
+        
+        if (data.length > 0) {
           this.movies.push(...data);
-            this.page++;
-          } else {
-            this.allLoaded = true;
-          }
-          this.loading = false;
-        },
-        error: () => {
-          this.loading = false;
+          this.page++;
+          console.log('Updated movies array:', this.movies);
+          console.log('New page number:', this.page);
+        } else {
+          this.allLoaded = true;
+          console.log('All movies loaded, no more data available');
         }
-      });
-  }
+        this.loading = false;
+      },
+      error: (error) => {
+        console.error('Error fetching movies:', error);
+        this.loading = false;
+      }
+    });
+}
 
   
 }
