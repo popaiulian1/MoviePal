@@ -37,6 +37,16 @@ public class CinemaEntryController {
         }
     }
 
+    @GetMapping("/featured")
+    public ResponseEntity<Page<CinemaEntry>> getFeaturedMovies(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "title") String sort) {
+        
+        Page<CinemaEntry> featuredMovies = cinemaEntryService.findFeaturedMovies(page, size, sort);
+        return ResponseEntity.ok(featuredMovies);
+    }
+
     @GetMapping("/{id}/details")
     public ResponseEntity<CinemaEntryDetailsDto> getEntryWithDetails(@PathVariable String id) {
         return cinemaEntryService.findEntryWithCinemaDetails(id)

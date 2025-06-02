@@ -59,4 +59,6 @@ public class CinemaEntry {
     @ValidCinema(message = "Referenced cinema does not exist")
     @Indexed()
     private String cinemaId;
+
+    private Boolean isFeatured = false;
 }

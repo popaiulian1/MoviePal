@@ -1,0 +1,38 @@
+<header class="navbar">
+
+  <div class="logo">
+    <img src="assets/images/logo1-blue.png" alt="MoviePal Logo" class="logo-img" />
+  </div>
+
+  <nav class="nav-left">
+    <a routerLink="/home" routerLinkActive="active">Home</a>
+    <a routerLink="/menu" routerLinkActive="active">Movies</a>
+    <a routerLink="/shop" routerLinkActive="active">Schedule</a>
+  </nav>
+
+  <nav class="nav-right">
+    <span class="search-container">
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        placeholder="Search..."
+        class="search-input"
+      />
+      <img
+        src="assets/images/search-icon.png"
+        alt="Search"
+        class="icon-img"
+        (click)="onSearchClick()"
+      />
+    </span>
+    
+    <div class="user-menu" #userMenuContainer>
+      <span nz-icon nzType="user" nzTheme="outline" (click)="toggleUserMenu()"></span>
+      
+      <div class="dropdown-menu" [class.show]="isUserMenuOpen">
+        <a routerLink="/login" routerLinkActive="active">Login</a>
+        <a routerLink="/register" routerLinkActive="active">SignUp</a>
+      </div>
+    </div>
+  </nav>
+</header>

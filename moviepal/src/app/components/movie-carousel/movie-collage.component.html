@@ -1,0 +1,24 @@
+<div class="movie-collage-container">
+  <div class="movie-collage">
+    @for (movie of paginatedMovies; track movie.id) {
+      <div class="movie-poster" [style.transform]="'rotate(' + movie.rotation + 'deg)'">
+        <img [src]="movie.posterUrl" alt="{{ movie.title }}">
+      </div>
+    }
+    @empty {
+      <div class="loading-message">Loading featured movies...</div>
+    }
+  </div>
+
+  <div class="pagination-controls">
+    <button class="pagination-button" [disabled]="currentPage === 0" (click)="previousPage()">
+      <span nz-icon nzType="left" nzTheme="outline"></span>
+    </button>
+    
+    <span class="page-indicator">Page {{ currentPage + 1 }}</span>
+    
+    <button class="pagination-button" [disabled]="!hasMoreMovies()" (click)="nextPage()">
+      <span nz-icon nzType="right" nzTheme="outline"></span>
+    </button>
+  </div>
+</div>

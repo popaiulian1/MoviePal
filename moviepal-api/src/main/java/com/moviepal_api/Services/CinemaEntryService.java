@@ -100,4 +100,14 @@ public class CinemaEntryService {
         return new PageImpl<>(dtos, PageRequest.of(page, size), entries.getTotalElements());
     }
 
+    public List<CinemaEntry> findFeaturedMovies() {
+        return repository.findByIsFeaturedTrue();
+    }
+
+    public Page<CinemaEntry> findFeaturedMovies(int page, int size, String sortBy) {
+        return repository.findByIsFeaturedTrue(
+            PageRequest.of(page, size, Sort.by(sortBy).ascending())
+        );
+    }
+
 }

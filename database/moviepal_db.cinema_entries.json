@@ -20,7 +20,8 @@
     "21:15"
   ],
   "ticketPrice": "15.99",
-  "cinemaId": "645faa9e0d2b15acb3456e01"
+  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "isFeatured": true
 },
 {
   "_id": {
@@ -43,7 +44,8 @@
     "19:30"
   ],
   "ticketPrice": "14.99",
-  "cinemaId": "645faa9e0d2b15acb3456e01"
+  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "isFeatured": true
 },
 {
   "_id": {
@@ -67,7 +69,8 @@
     "20:00"
   ],
   "ticketPrice": "16.99",
-  "cinemaId": "645faa9e0d2b15acb3456e02"
+  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "isFeatured": true
 },
 {
   "_id": {
@@ -90,7 +93,8 @@
     "20:45"
   ],
   "ticketPrice": "13.99",
-  "cinemaId": "645faa9e0d2b15acb3456e02"
+  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "isFeatured": true
 },
 {
   "_id": {
@@ -113,7 +117,8 @@
     "18:30"
   ],
   "ticketPrice": "12.99",
-  "cinemaId": "645faa9e0d2b15acb3456e01"
+  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "isFeatured": false
 },
 {
   "_id": {
@@ -137,7 +142,8 @@
     "22:00"
   ],
   "ticketPrice": "17.99",
-  "cinemaId": "645faa9e0d2b15acb3456e01"
+  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "isFeatured": true
 },
 {
   "_id": {
@@ -160,7 +166,8 @@
     "20:30"
   ],
   "ticketPrice": "14.50",
-  "cinemaId": "645faa9e0d2b15acb3456e02"
+  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "isFeatured": false
 },
 {
   "_id": {
@@ -184,7 +191,8 @@
     "19:45"
   ],
   "ticketPrice": "15.50",
-  "cinemaId": "645faa9e0d2b15acb3456e01"
+  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "isFeatured": true
 },
 {
   "_id": {
@@ -208,7 +216,8 @@
     "21:30"
   ],
   "ticketPrice": "13.99",
-  "cinemaId": "645faa9e0d2b15acb3456e02"
+  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "isFeatured": true
 },
 {
   "_id": {
@@ -232,7 +241,8 @@
     "20:15"
   ],
   "ticketPrice": "16.99",
-  "cinemaId": "645faa9e0d2b15acb3456e01"
+  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "isFeatured": false
 },
 {
   "_id": {
@@ -256,7 +266,8 @@
     "21:00"
   ],
   "ticketPrice": "18.50",
-  "cinemaId": "645faa9e0d2b15acb3456e02"
+  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "isFeatured": true
 },
 {
   "_id": {
@@ -280,7 +291,8 @@
     "21:45"
   ],
   "ticketPrice": "15.50",
-  "cinemaId": "645faa9e0d2b15acb3456e01"
+  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "isFeatured": true
 },
 {
   "_id": {
@@ -304,7 +316,8 @@
     "22:15"
   ],
   "ticketPrice": "14.50",
-  "cinemaId": "645faa9e0d2b15acb3456e02"
+  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "isFeatured": false
 },
 {
   "_id": {
@@ -328,7 +341,8 @@
     "20:30"
   ],
   "ticketPrice": "16.50",
-  "cinemaId": "645faa9e0d2b15acb3456e01"
+  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "isFeatured": false
 },
 {
   "_id": {
@@ -352,5 +366,481 @@
     "21:45"
   ],
   "ticketPrice": "14.99",
-  "cinemaId": "645faa9e0d2b15acb3456e02"
+  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "isFeatured": true
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c7f"
+  },
+  "title": "The Social Network",
+  "genre": "Biography, Drama",
+  "director": "David Fincher",
+  "rating": 7.8,
+  "description": "As Harvard student Mark Zuckerberg creates the social networking site that would become known as Facebook, he is sued by the twins who claimed he stole their idea, and by the co-founder who was later squeezed out of the business.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/n0ybibhJtQ5icDqTp8eRytcIHJx.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=lB95KLmpLR4",
+  "releaseDate": "2010-10-01",
+  "runtime": "120 min",
+  "language": "English",
+  "cast": "Jesse Eisenberg, Andrew Garfield, Justin Timberlake, Rooney Mara",
+  "status": "SHOWING",
+  "showTimes": [
+    "14:30",
+    "17:45",
+    "21:00"
+  ],
+  "ticketPrice": "15.50",
+  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "isFeatured": true
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c80"
+  },
+  "title": "Eternal Sunshine of the Spotless Mind",
+  "genre": "Drama, Romance, Sci-Fi",
+  "director": "Michel Gondry",
+  "rating": 8.3,
+  "description": "When their relationship turns sour, a couple undergoes a medical procedure to have each other erased from their memories.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/5MwkWH9tYHv3mV9OdYTMR5qreIz.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=07-QBnEkgXU",
+  "releaseDate": "2004-03-19",
+  "runtime": "108 min",
+  "language": "English",
+  "cast": "Jim Carrey, Kate Winslet, Kirsten Dunst, Mark Ruffalo",
+  "status": "SHOWING",
+  "showTimes": [
+    "16:15",
+    "19:30",
+    "22:00"
+  ],
+  "ticketPrice": "14.99",
+  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "isFeatured": true
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c81"
+  },
+  "title": "Blade Runner 2049",
+  "genre": "Action, Drama, Mystery, Sci-Fi",
+  "director": "Denis Villeneuve",
+  "rating": 8.0,
+  "description": "Young Blade Runner K's discovery of a long-buried secret leads him to track down former Blade Runner Rick Deckard, who's been missing for thirty years.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/gajva2L0rPYkEWjzgFlBXCAVBE5.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=gCcx85zbxz4",
+  "releaseDate": "2017-10-06",
+  "runtime": "164 min",
+  "language": "English, Finnish, Japanese",
+  "cast": "Ryan Gosling, Harrison Ford, Ana de Armas, Sylvia Hoeks",
+  "status": "SHOWING",
+  "showTimes": [
+    "13:45",
+    "17:30",
+    "20:45"
+  ],
+  "ticketPrice": "17.99",
+  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "isFeatured": false
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c82"
+  },
+  "title": "La La Land",
+  "genre": "Comedy, Drama, Music, Romance",
+  "director": "Damien Chazelle",
+  "rating": 8.0,
+  "description": "While navigating their careers in Los Angeles, a pianist and an actress fall in love while attempting to reconcile their aspirations for the future.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/uDO8zWDhfWwoFdKS4fzkUJt0Rf0.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=0pdqf4P9MB8",
+  "releaseDate": "2016-12-09",
+  "runtime": "128 min",
+  "language": "English",
+  "cast": "Ryan Gosling, Emma Stone, John Legend, Rosemarie DeWitt",
+  "status": "SHOWING",
+  "showTimes": [
+    "15:00",
+    "18:15",
+    "21:30"
+  ],
+  "ticketPrice": "16.50",
+  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "isFeatured": false
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c83"
+  },
+  "title": "Grand Budapest Hotel",
+  "genre": "Adventure, Comedy, Drama",
+  "director": "Wes Anderson",
+  "rating": 8.1,
+  "description": "A writer encounters the owner of an aging high-class hotel, who tells him of his early years serving as a lobby boy in the hotel's glorious years under an exceptional concierge.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/eWdyYQreja6JGCzqHWXpWHDrrPo.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=1Fg5iWmQjwk",
+  "releaseDate": "2014-03-07",
+  "runtime": "99 min",
+  "language": "English, French, German",
+  "cast": "Ralph Fiennes, F. Murray Abraham, Mathieu Amalric, Adrien Brody",
+  "status": "ARCHIVED",
+  "showTimes": [
+    "14:45",
+    "17:15",
+    "20:00"
+  ],
+  "ticketPrice": "15.50",
+  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "isFeatured": true
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c84"
+  },
+  "title": "Get Out",
+  "genre": "Horror, Mystery, Thriller",
+  "director": "Jordan Peele",
+  "rating": 7.7,
+  "description": "A young African-American visits his white girlfriend's parents for the weekend, where his simmering uneasiness about their reception of him eventually reaches a boiling point.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/tFXcEccSQMf3lfhfXKSU9iRBpa3.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=DzfpyUB60YY",
+  "releaseDate": "2017-02-24",
+  "runtime": "104 min",
+  "language": "English",
+  "cast": "Daniel Kaluuya, Allison Williams, Bradley Whitford, Catherine Keener",
+  "status": "SHOWING",
+  "showTimes": [
+    "16:30",
+    "19:00",
+    "21:45"
+  ],
+  "ticketPrice": "15.99",
+  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "isFeatured": true
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c85"
+  },
+  "title": "The Departed",
+  "genre": "Crime, Drama, Thriller",
+  "director": "Martin Scorsese",
+  "rating": 8.5,
+  "description": "An undercover cop and a mole in the police attempt to identify each other while infiltrating an Irish gang in South Boston.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/nT97ifVT2J1yMQmeq20Qblg61T.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=iojhqm0JTW4",
+  "releaseDate": "2006-10-06",
+  "runtime": "151 min",
+  "language": "English, Cantonese",
+  "cast": "Leonardo DiCaprio, Matt Damon, Jack Nicholson, Mark Wahlberg",
+  "status": "ARCHIVED",
+  "showTimes": [
+    "13:30",
+    "17:00",
+    "20:30"
+  ],
+  "ticketPrice": "14.99",
+  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "isFeatured": false
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c86"
+  },
+  "title": "Arrival",
+  "genre": "Drama, Mystery, Sci-Fi",
+  "director": "Denis Villeneuve",
+  "rating": 7.9,
+  "description": "A linguist is recruited by the military to communicate with alien lifeforms after twelve mysterious spacecraft appear around the world.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/x2FJsf1ElAgr63Y3PNPtJrcmpoe.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=tFMo3UJ4B4g",
+  "releaseDate": "2016-11-11",
+  "runtime": "116 min",
+  "language": "English, Russian, Mandarin",
+  "cast": "Amy Adams, Jeremy Renner, Forest Whitaker, Michael Stuhlbarg",
+  "status": "SHOWING",
+  "showTimes": [
+    "15:45",
+    "18:30",
+    "21:15"
+  ],
+  "ticketPrice": "16.50",
+  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "isFeatured": false
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c87"
+  },
+  "title": "The Truman Show",
+  "genre": "Comedy, Drama",
+  "director": "Peter Weir",
+  "rating": 8.1,
+  "description": "An insurance salesman discovers his whole life is actually a reality TV show.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/vuza0WqY239yBXOadKlGwJsZJFE.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=dlnmQbPGuls",
+  "releaseDate": "1998-06-05",
+  "runtime": "103 min",
+  "language": "English",
+  "cast": "Jim Carrey, Laura Linney, Ed Harris, Noah Emmerich",
+  "status": "SHOWING",
+  "showTimes": [
+    "14:15",
+    "16:45",
+    "19:30"
+  ],
+  "ticketPrice": "14.50",
+  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "isFeatured": true
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c88"
+  },
+  "title": "Inglourious Basterds",
+  "genre": "Adventure, Drama, War",
+  "director": "Quentin Tarantino",
+  "rating": 8.3,
+  "description": "In Nazi-occupied France during World War II, a plan to assassinate Nazi leaders by a group of Jewish U.S. soldiers coincides with a theatre owner's vengeful plans for the same.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/7sfbEnaARXDDhKm0CZ7D7uc2sbo.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=KnrRy6kSFF0",
+  "releaseDate": "2009-08-21",
+  "runtime": "153 min",
+  "language": "English, German, French, Italian",
+  "cast": "Brad Pitt, Christoph Waltz, Michael Fassbender, Eli Roth",
+  "status": "SHOWING",
+  "showTimes": [
+    "13:00",
+    "16:30",
+    "20:15"
+  ],
+  "ticketPrice": "15.99",
+  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "isFeatured": true
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c89"
+  },
+  "title": "Children of Men",
+  "genre": "Action, Drama, Sci-Fi",
+  "director": "Alfonso Cuarón",
+  "rating": 7.9,
+  "description": "In 2027, in a chaotic world in which women have become somehow infertile, a former activist agrees to help transport a miraculously pregnant woman to a sanctuary at sea.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/yWc1BnghWGe4mpKyY2z58nHfZ8v.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=2VT2apoX90o",
+  "releaseDate": "2006-12-25",
+  "runtime": "109 min",
+  "language": "English, German, Italian, Romanian, Spanish",
+  "cast": "Clive Owen, Julianne Moore, Michael Caine, Chiwetel Ejiofor",
+  "status": "ARCHIVED",
+  "showTimes": [
+    "15:30",
+    "18:00",
+    "21:00"
+  ],
+  "ticketPrice": "14.50",
+  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "isFeatured": false
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c8a"
+  },
+  "title": "Moonlight",
+  "genre": "Drama",
+  "director": "Barry Jenkins",
+  "rating": 7.4,
+  "description": "A young African-American man grapples with his identity and sexuality while experiencing the everyday struggles of childhood, adolescence, and burgeoning adulthood.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/rcICfiL9fvwRjoWHxW8QeroLYrJ.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=9NJj12tJzqc",
+  "releaseDate": "2016-10-21",
+  "runtime": "111 min",
+  "language": "English",
+  "cast": "Mahershala Ali, Naomie Harris, Trevante Rhodes, Ashton Sanders",
+  "status": "SHOWING",
+  "showTimes": [
+    "16:00",
+    "18:45",
+    "21:30"
+  ],
+  "ticketPrice": "15.50",
+  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "isFeatured": false
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c8b"
+  },
+  "title": "The Thing",
+  "genre": "Horror, Mystery, Sci-Fi",
+  "director": "John Carpenter",
+  "rating": 8.1,
+  "description": "A research team in Antarctica is hunted by a shape-shifting alien that assumes the appearance of its victims.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/tzGY49kseSE9QAKk47uuDGwnSCu.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=5ftmr17M-a4",
+  "releaseDate": "1982-06-25",
+  "runtime": "109 min",
+  "language": "English, Norwegian",
+  "cast": "Kurt Russell, Wilford Brimley, Keith David, Donald Moffat",
+  "status": "ARCHIVED",
+  "showTimes": [
+    "17:15",
+    "20:00",
+    "22:30"
+  ],
+  "ticketPrice": "13.99",
+  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "isFeatured": false
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c8c"
+  },
+  "title": "Her",
+  "genre": "Drama, Romance, Sci-Fi",
+  "director": "Spike Jonze",
+  "rating": 8.0,
+  "description": "In a near future, a lonely writer develops an unlikely relationship with an operating system designed to meet his every need.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/eCOtqtfvn7mxGl6nfmq4b1exJRc.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=dJTU48_yghs",
+  "releaseDate": "2013-12-18",
+  "runtime": "126 min",
+  "language": "English",
+  "cast": "Joaquin Phoenix, Scarlett Johansson, Amy Adams, Rooney Mara",
+  "status": "SHOWING",
+  "showTimes": [
+    "14:00",
+    "17:15",
+    "20:30"
+  ],
+  "ticketPrice": "15.99",
+  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "isFeatured": false
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c8e"
+  },
+  "title": "No Country for Old Men",
+  "genre": "Crime, Drama, Thriller",
+  "director": "Ethan Coen, Joel Coen",
+  "rating": 8.1,
+  "description": "Violence and mayhem ensue after a hunter stumbles upon a drug deal gone wrong and more than two million dollars in cash near the Rio Grande.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/6d5XOczc226jECq0LIX0siKtgHR.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=38A__WT3-o0",
+  "releaseDate": "2007-11-09",
+  "runtime": "122 min",
+  "language": "English, Spanish",
+  "cast": "Tommy Lee Jones, Javier Bardem, Josh Brolin, Woody Harrelson",
+  "status": "ARCHIVED",
+  "showTimes": [
+    "15:15",
+    "18:30",
+    "21:15"
+  ],
+  "ticketPrice": "14.99",
+  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "isFeatured": false
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c8f"
+  },
+  "title": "Inside Out",
+  "genre": "Animation, Adventure, Comedy",
+  "director": "Pete Docter, Ronnie Del Carmen",
+  "rating": 8.2,
+  "description": "After young Riley is uprooted from her Midwest life and moved to San Francisco, her emotions - Joy, Fear, Anger, Disgust and Sadness - conflict on how best to navigate a new city, house, and school.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/lRHE0vzf3oYJrhbsHXjIkF4Tl5A.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=yRUAzGQ3nSY",
+  "releaseDate": "2015-06-19",
+  "runtime": "95 min",
+  "language": "English",
+  "cast": "Amy Poehler, Bill Hader, Lewis Black, Mindy Kaling",
+  "status": "SHOWING",
+  "showTimes": [
+    "13:15",
+    "15:45",
+    "18:00"
+  ],
+  "ticketPrice": "16.50",
+  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "isFeatured": false
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c90"
+  },
+  "title": "Memento",
+  "genre": "Mystery, Thriller",
+  "director": "Christopher Nolan",
+  "rating": 8.4,
+  "description": "A man with short-term memory loss attempts to track down his wife's murderer.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/fKTPH2WvH8nHTXeBYBVhawtRqtR.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=4CV41hoyS8A",
+  "releaseDate": "2000-10-11",
+  "runtime": "113 min",
+  "language": "English",
+  "cast": "Guy Pearce, Carrie-Anne Moss, Joe Pantoliano, Mark Boone Junior",
+  "status": "SHOWING",
+  "showTimes": [
+    "16:15",
+    "19:00",
+    "21:45"
+  ],
+  "ticketPrice": "15.50",
+  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "isFeatured": false
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c91"
+  },
+  "title": "Amélie",
+  "genre": "Comedy, Romance",
+  "director": "Jean-Pierre Jeunet",
+  "rating": 8.3,
+  "description": "Amélie is an innocent and naive girl in Paris with her own sense of justice. She decides to help those around her and, along the way, discovers love.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/jj94nwaprDdKXCv1zXYRJkRNa2p.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=HUECWi5pX7o",
+  "releaseDate": "2001-04-25",
+  "runtime": "122 min",
+  "language": "French, Russian",
+  "cast": "Audrey Tautou, Mathieu Kassovitz, Rufus, Lorella Cravotta",
+  "status": "ARCHIVED",
+  "showTimes": [
+    "15:00",
+    "17:45",
+    "20:15"
+  ],
+  "ticketPrice": "14.50",
+  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "isFeatured": false
+},
+{
+  "_id": {
+    "$oid": "68330fa379ff34b2ae344c92"
+  },
+  "title": "The Prestige",
+  "genre": "Drama, Mystery, Sci-Fi",
+  "director": "Christopher Nolan",
+  "rating": 8.5,
+  "description": "After a tragic accident, two stage magicians engage in a battle to create the ultimate illusion while sacrificing everything they have to outwit each other.",
+  "posterUrl": "https://image.tmdb.org/t/p/w500/bdN3gXuIZYaJP7ftKK2sU0nPtEA.jpg",
+  "trailerUrl": "https://www.youtube.com/watch?v=o4gHCmTQDVI",
+  "releaseDate": "2006-10-20",
+  "runtime": "130 min",
+  "language": "English",
+  "cast": "Hugh Jackman, Christian Bale, Michael Caine, Scarlett Johansson",
+  "status": "SHOWING",
+  "showTimes": [
+    "14:30",
+    "17:30",
+    "20:45"
+  ],
+  "ticketPrice": "16.99",
+  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "isFeatured": false
 }]
