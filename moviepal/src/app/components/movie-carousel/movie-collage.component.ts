@@ -4,12 +4,11 @@ import { featuredMovie } from '../../interfaces/featured-movie.interface';
 import { CommonModule } from '@angular/common';
 import { MovieResponse } from '../../interfaces/movie-response.interface';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { MovieService } from '../../services/movie.service';
 
 interface MovieWithRotation extends featuredMovie {
   rotation?: number;
 }
-
-const BASE_API_URL = 'http://localhost:8080/api';
 
 @Component({
   selector: 'app-movie-collage',
@@ -28,7 +27,7 @@ export class MovieCollageComponent implements OnInit {
   currentPage = 0;
   moviesPerPage = 8;
 
-  constructor(private http: HttpClient) {}
+  constructor(private movieService: MovieService) {}
 
   ngOnInit(): void {
     this.loadMovies();
@@ -40,7 +39,7 @@ export class MovieCollageComponent implements OnInit {
     this.loading = true;
     console.log('Fetching movies with parameters:', { page: this.page, size: this.size });
     
-    this.http.get<any>(`${BASE_API_URL}/movies/featured?page=${this.page}&size=${this.size}`)
+    this.movieService.getFeaturedMovies(this.page, this.size)
       .subscribe({
         next: (response) => {
           console.log('API Response For Movies:', response);

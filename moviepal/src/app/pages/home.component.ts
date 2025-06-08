@@ -7,8 +7,6 @@ import { CommonModule } from '@angular/common';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { MovieCollageComponent } from "../components/movie-carousel/movie-collage.component";
 
-const BASE_API_URL = 'http://localhost:8080/api';
-
 @Component({
   selector: 'app-home',
   standalone: true,

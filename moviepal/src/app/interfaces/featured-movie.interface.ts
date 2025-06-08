@@ -15,4 +15,5 @@ export interface featuredMovie {
     language: string[];
     releaseDate: string;
     cinemaId: string;
+    isFeatured: boolean;
 }
