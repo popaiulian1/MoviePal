@@ -1,0 +1,81 @@
+@import "../../../variables.scss";
+
+.login-page {
+  background: linear-gradient(
+    135deg,
+    darken($primary-dark, 5%) 0%,
+    $primary-dark 100%
+  );
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.1) 2px,
+      transparent 1px
+    );
+    background-size: 20px 20px;
+    opacity: 0.3;
+    pointer-events: none;
+  }
+}
+
+.login-container {
+  max-width: 500px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background-color: $background;
+  border-radius: 12px;
+  color: black;
+  font-family: "Segoe UI", sans-serif;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+input {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: $background-light;
+  color: black;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  background-color: $secondary;
+  font-weight: bold;
+  color: white;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $secondary-light;
+    transform: translateY(-2px); 
+  }
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error {
+  color: #ff6b6b;
+  margin-top: 1rem;
+}
