@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
+  standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
@@ -27,14 +28,16 @@ export class LoginComponent {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
+      rememberMe: [false],
     });
   }
+
   onSubmit(): void {
     if (this.loginForm.invalid) return;
 
-    const { username, password } = this.loginForm.value;
+    const { username, password, rememberMe } = this.loginForm.value;
 
-    this.auth.login(username!, password!).subscribe({
+    this.auth.login(username!, password!, rememberMe).subscribe({
       next: () => {
         this.router.navigate(['/home']); // redirect after login success
       },

@@ -1,34 +1,90 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { BASE_API_URL } from '../utils/api.url';
 
 interface LoginResponse {
   token: string;
+}
+
+interface User {
+  username: string;
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:8080/api/auth'; 
+  private currentUserSubject = new BehaviorSubject<User | null>(null);
+  public currentUser = this.currentUserSubject.asObservable();
+  private storageType: Storage = localStorage; // Default to localStorage
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.checkAuthStatus();
+  }
 
-  login(username: string, password: string): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.baseUrl}/login`, { username, password }).pipe(
+  login(username: string, password: string, rememberMe: boolean = false): Observable<LoginResponse> {
+    // Set storage type based on remember me
+    this.storageType = rememberMe ? localStorage : sessionStorage;
+    
+    return this.http.post<LoginResponse>(`${BASE_API_URL}/auth/login`, { username, password }).pipe(
       tap(response => {
-        localStorage.setItem('token', response.token);
+        // Store token in the appropriate storage
+        this.storageType.setItem('token', response.token);
+
+        const user = this.getUserFromToken(response.token);
+        if (user) {
+          this.currentUserSubject.next(user);
+        } else {
+          console.error('Failed to parse user from token');
+        }
       })
     );
   }
 
+  private checkAuthStatus() {
+    // Check both storage types
+    let token = localStorage.getItem('token') || sessionStorage.getItem('token');
+    
+    if (token) {
+      try {
+        const user = this.getUserFromToken(token);
+        this.currentUserSubject.next(user);
+        // Set storage type based on where we found the token
+        this.storageType = localStorage.getItem('token') ? localStorage : sessionStorage;
+      } catch (error) {
+        console.error('Error parsing token:', error);
+        this.logout();
+      }
+    }
+  }
+
+  private getUserFromToken(token: string): User | null {
+    try {
+      const payload = token.split('.')[1];
+      const decodedPayload = JSON.parse(atob(payload));
+
+      return {
+        username: decodedPayload.sub || decodedPayload.username || 'Unknown User'
+      }
+    } catch (error) {
+      console.error('Error decoding token:', error);
+      return null;
+    }
+  }
+
   logout() {
+    // Clear token from both storages
     localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
+    this.currentUserSubject.next(null);
+    console.log('User logged out successfully');
   }
 
   getToken(): string | null {
-    return localStorage.getItem('token');
+    // Check both storage types
+    return localStorage.getItem('token') || sessionStorage.getItem('token');
   }
 
   isLoggedIn(): boolean {

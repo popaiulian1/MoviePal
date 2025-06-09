@@ -13,9 +13,16 @@
         <input id="password" type="password" formControlName="password" />
       </div>
 
+      <div class="form-group remember-me">
+        <input id="rememberMe" type="checkbox" formControlName="rememberMe" />
+        <label for="rememberMe">Remember me</label>
+      </div>
+
       <button type="submit" [disabled]="loginForm.invalid">Login</button>
 
-      <div class="error" *ngIf="errorMsg">{{ errorMsg }}</div>
+      @if (errorMsg) {
+        <div class="error">{{ errorMsg }}</div>
+      }
     </form>
   </div>
 </div>

@@ -1,7 +1,7 @@
 @import '../../../variables.scss';
 
 .footer-container {
-  background-color: $secondary;
+  background-color: $background-light;
   color: #eee;
   text-align: center;
   padding: 2rem 2rem;
@@ -22,27 +22,27 @@
 }
 
 .footer-social a:hover {
-  color: $secondary-light;
+  color: $accent-light;
   transform: translateY(-2px);
 }
 
 .footer-description {
   font-size: 0.95rem;
-  margin: 1rem auto;
+  margin: 0rem auto;
   max-width: 600px;
   line-height: 1.6;
   color: #ccc;
 }
 
 .footer-logo img {
-  max-width: 350px;
+  max-width: 230px;
   height: auto;
-  margin-top: 1rem;
+  margin-top: 0.6rem;
 }
 
 
 .footer-bottom {
-  margin-top: 1.5rem;
+  margin-top: 0.8rem;
   font-size: 0.85rem;
   color: #b9b9b9;
 }

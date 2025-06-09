@@ -39,11 +39,20 @@
     </div>
     
     <div class="user-menu" #userMenuContainer>
-      <span nz-icon nzType="user" nzTheme="outline" (click)="toggleUserMenu()"></span>
+      @if (isLoggedIn) {
+        <div class="user-initials" (click)="toggleUserMenu()">{{ userInitials }}</div>
+      } @else {
+        <span nz-icon nzType="user" nzTheme="outline" (click)="toggleUserMenu()"></span>
+      }
       
       <div class="dropdown-menu" [class.show]="isUserMenuOpen">
-        <a routerLink="/login" routerLinkActive="active">Login</a>
-        <a routerLink="/register" routerLinkActive="active">SignUp</a>
+        @if (isLoggedIn) {
+          <a routerLink="/tickets">Tickets</a>
+          <a (click)="logout()">Logout</a>
+        } @else {
+          <a routerLink="/login">Login</a>
+          <a routerLink="/register">SignUp</a>
+        }
       </div>
     </div>
   </nav>

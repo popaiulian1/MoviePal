@@ -8,6 +8,7 @@ import { featuredMovie } from '../../interfaces/featured-movie.interface';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { MovieService } from '../../services/movie.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -21,16 +22,38 @@ export class NavbarComponent {
   isUserMenuOpen: boolean = false;
   searchResults: featuredMovie[] = [];
   private searchSubject = new Subject<string>();
+
+  isLoggedIn: boolean = false;
+  currentUser: any = null;
+  userInitials: string = '';
   
   @ViewChild('userMenuContainer') userMenuContainer!: ElementRef;
 
-  constructor(private router: Router, private movieService: MovieService) {
+  constructor(private router: Router, 
+    private movieService: MovieService,
+    private authService: AuthService) {
     this.searchSubject.pipe(
       debounceTime(300),
       distinctUntilChanged()
     ).subscribe(term => {
       this.doSearch(term);
     })
+
+    this.authService.currentUser.subscribe(user => {
+      this.currentUser = user;
+      this.isLoggedIn = !!user;
+      if(user) {
+        this.userInitials = user.username.substring(0, 2).toUpperCase();
+      } else{
+        this.userInitials = '';
+      }
+    });
+  }
+
+  logout(){
+    this.authService.logout();
+    this.isUserMenuOpen = false;
+    this.router.navigate(['/home']);
   }
 
   onSearchInput(){

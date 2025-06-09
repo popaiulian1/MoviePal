@@ -196,6 +196,25 @@
         }
       }
       
+      .user-initials {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        background-color: $secondary;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        cursor: pointer;
+        transition: transform 0.2s, background-color 0.2s;
+        
+        &:hover {
+          transform: scale(1.1);
+          background-color: $secondary-light;
+        }
+      }
+      
       .dropdown-menu {
         position: absolute;
         top: 45px;
