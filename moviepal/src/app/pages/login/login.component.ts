@@ -6,6 +6,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +19,11 @@ export class LoginComponent {
   loginForm: FormGroup;
   errorMsg = '';
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private router: Router
+  ) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
@@ -28,7 +34,14 @@ export class LoginComponent {
 
     const { username, password } = this.loginForm.value;
 
-    // TODO: Call authentication service here
-    console.log('Login with:', username, password);
+    this.auth.login(username!, password!).subscribe({
+      next: () => {
+        this.router.navigate(['/home']); // redirect after login success
+      },
+      error: (err) => {
+        this.errorMsg =
+          'Login failed: ' + (err.error?.message || err.statusText);
+      },
+    });
   }
 }
