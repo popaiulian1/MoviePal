@@ -93,6 +93,10 @@ public class CinemaEntryService {
         List<CinemaEntryDetailsDto> dtos = entries.getContent().stream()
                 .map(entry -> {
                     Cinema cinema = cinemaMap.get(entry.getCinemaId());
+                    if (cinema == null) {
+                        // Create a placeholder cinema if none exists
+                        cinema = createPlaceholderCinema(entry.getCinemaId());
+                    }
                     return new CinemaEntryDetailsDto(entry, cinema);
                 })
                 .collect(Collectors.toList());
@@ -110,4 +114,12 @@ public class CinemaEntryService {
         );
     }
 
+    // Add this helper method
+    private Cinema createPlaceholderCinema(String cinemaId) {
+        Cinema placeholder = new Cinema();
+        placeholder.setId(cinemaId);
+        placeholder.setName("Unknown Cinema");
+        placeholder.setLocation("Unknown Location");
+        return placeholder;
+    }
 }

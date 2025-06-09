@@ -20,7 +20,7 @@
     "21:15"
   ],
   "ticketPrice": "15.99",
-  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "cinemaId": "68330386f1db867e3eb4f9c2",
   "isFeatured": true
 },
 {
@@ -44,7 +44,7 @@
     "19:30"
   ],
   "ticketPrice": "14.99",
-  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "cinemaId": "68330386f1db867e3eb4f9c1",
   "isFeatured": true
 },
 {
@@ -69,7 +69,7 @@
     "20:00"
   ],
   "ticketPrice": "16.99",
-  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "cinemaId": "68330386f1db867e3eb4f9c1",
   "isFeatured": true
 },
 {
@@ -93,7 +93,7 @@
     "20:45"
   ],
   "ticketPrice": "13.99",
-  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "cinemaId": "68330386f1db867e3eb4f9c1",
   "isFeatured": true
 },
 {
@@ -117,7 +117,7 @@
     "18:30"
   ],
   "ticketPrice": "12.99",
-  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "cinemaId": "68330386f1db867e3eb4f9c1",
   "isFeatured": false
 },
 {
@@ -142,7 +142,7 @@
     "22:00"
   ],
   "ticketPrice": "17.99",
-  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "cinemaId": "68330386f1db867e3eb4f9c1",
   "isFeatured": true
 },
 {
@@ -166,7 +166,7 @@
     "20:30"
   ],
   "ticketPrice": "14.50",
-  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "cinemaId": "68330386f1db867e3eb4f9c2",
   "isFeatured": false
 },
 {
@@ -191,7 +191,7 @@
     "19:45"
   ],
   "ticketPrice": "15.50",
-  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "cinemaId": "68330386f1db867e3eb4f9c2",
   "isFeatured": true
 },
 {
@@ -216,7 +216,7 @@
     "21:30"
   ],
   "ticketPrice": "13.99",
-  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "cinemaId": "68330386f1db867e3eb4f9c2",
   "isFeatured": true
 },
 {
@@ -241,7 +241,7 @@
     "20:15"
   ],
   "ticketPrice": "16.99",
-  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "cinemaId": "68330386f1db867e3eb4f9c2",
   "isFeatured": false
 },
 {
@@ -266,7 +266,7 @@
     "21:00"
   ],
   "ticketPrice": "18.50",
-  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "cinemaId": "68330386f1db867e3eb4f9c2",
   "isFeatured": true
 },
 {
@@ -291,7 +291,7 @@
     "21:45"
   ],
   "ticketPrice": "15.50",
-  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "cinemaId": "68330386f1db867e3eb4f9c1",
   "isFeatured": true
 },
 {
@@ -316,7 +316,7 @@
     "22:15"
   ],
   "ticketPrice": "14.50",
-  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "cinemaId": "68330386f1db867e3eb4f9c2",
   "isFeatured": false
 },
 {
@@ -341,7 +341,7 @@
     "20:30"
   ],
   "ticketPrice": "16.50",
-  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "cinemaId": "68330386f1db867e3eb4f9c2",
   "isFeatured": false
 },
 {
@@ -366,7 +366,7 @@
     "21:45"
   ],
   "ticketPrice": "14.99",
-  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "cinemaId": "68330386f1db867e3eb4f9c1",
   "isFeatured": true
 },
 {
@@ -391,7 +391,7 @@
     "21:00"
   ],
   "ticketPrice": "15.50",
-  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "cinemaId": "68330386f1db867e3eb4f9c2",
   "isFeatured": true
 },
 {
@@ -416,7 +416,7 @@
     "22:00"
   ],
   "ticketPrice": "14.99",
-  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "cinemaId": "68330386f1db867e3eb4f9c1",
   "isFeatured": true
 },
 {
@@ -441,7 +441,7 @@
     "20:45"
   ],
   "ticketPrice": "17.99",
-  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "cinemaId": "68330386f1db867e3eb4f9c2",
   "isFeatured": false
 },
 {
@@ -466,7 +466,7 @@
     "21:30"
   ],
   "ticketPrice": "16.50",
-  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "cinemaId": "68330386f1db867e3eb4f9c1",
   "isFeatured": false
 },
 {
@@ -491,7 +491,7 @@
     "20:00"
   ],
   "ticketPrice": "15.50",
-  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "cinemaId": "68330386f1db867e3eb4f9c2",
   "isFeatured": true
 },
 {
@@ -516,7 +516,7 @@
     "21:45"
   ],
   "ticketPrice": "15.99",
-  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "cinemaId": "68330386f1db867e3eb4f9c2",
   "isFeatured": true
 },
 {
@@ -541,7 +541,7 @@
     "20:30"
   ],
   "ticketPrice": "14.99",
-  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "cinemaId": "68330386f1db867e3eb4f9c2",
   "isFeatured": false
 },
 {
@@ -566,7 +566,7 @@
     "21:15"
   ],
   "ticketPrice": "16.50",
-  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "cinemaId": "68330386f1db867e3eb4f9c2",
   "isFeatured": false
 },
 {
@@ -591,7 +591,7 @@
     "19:30"
   ],
   "ticketPrice": "14.50",
-  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "cinemaId": "68330386f1db867e3eb4f9c2",
   "isFeatured": true
 },
 {
@@ -616,7 +616,7 @@
     "20:15"
   ],
   "ticketPrice": "15.99",
-  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "cinemaId": "68330386f1db867e3eb4f9c1",
   "isFeatured": true
 },
 {
@@ -641,7 +641,7 @@
     "21:00"
   ],
   "ticketPrice": "14.50",
-  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "cinemaId": "68330386f1db867e3eb4f9c1",
   "isFeatured": false
 },
 {
@@ -666,7 +666,7 @@
     "21:30"
   ],
   "ticketPrice": "15.50",
-  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "cinemaId": "68330386f1db867e3eb4f9c1",
   "isFeatured": false
 },
 {
@@ -691,7 +691,7 @@
     "22:30"
   ],
   "ticketPrice": "13.99",
-  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "cinemaId": "68330386f1db867e3eb4f9c2",
   "isFeatured": false
 },
 {
@@ -716,7 +716,7 @@
     "20:30"
   ],
   "ticketPrice": "15.99",
-  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "cinemaId": "68330386f1db867e3eb4f9c2",
   "isFeatured": false
 },
 {
@@ -741,7 +741,7 @@
     "21:15"
   ],
   "ticketPrice": "14.99",
-  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "cinemaId": "68330386f1db867e3eb4f9c2",
   "isFeatured": false
 },
 {
@@ -766,7 +766,7 @@
     "18:00"
   ],
   "ticketPrice": "16.50",
-  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "cinemaId": "68330386f1db867e3eb4f9c1",
   "isFeatured": false
 },
 {
@@ -791,7 +791,7 @@
     "21:45"
   ],
   "ticketPrice": "15.50",
-  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "cinemaId": "68330386f1db867e3eb4f9c1",
   "isFeatured": false
 },
 {
@@ -816,7 +816,7 @@
     "20:15"
   ],
   "ticketPrice": "14.50",
-  "cinemaId": "645faa9e0d2b15acb3456e01",
+  "cinemaId": "68330386f1db867e3eb4f9c1",
   "isFeatured": false
 },
 {
@@ -841,6 +841,6 @@
     "20:45"
   ],
   "ticketPrice": "16.99",
-  "cinemaId": "645faa9e0d2b15acb3456e02",
+  "cinemaId": "68330386f1db867e3eb4f9c2",
   "isFeatured": false
 }]

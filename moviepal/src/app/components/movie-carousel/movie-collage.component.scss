@@ -50,7 +50,7 @@
       margin: 2rem 0;
       
       .pagination-button {
-        background-color: $secondary;
+        background-color: $accent;
         color: white;
         border: none;
         padding: 10px 20px;
@@ -68,7 +68,7 @@
         }
         
         &:hover:not(:disabled) {
-          background-color: lighten($secondary, 10%);
+          background-color: $accent-light;
           transform: translateY(-2px);
         }
         

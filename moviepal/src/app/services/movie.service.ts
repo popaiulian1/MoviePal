@@ -1,7 +1,6 @@
 import {BASE_API_URL} from '../utils/api.url';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { featuredMovie } from '../interfaces/featured-movie.interface';
 import { MovieResponse } from '../interfaces/movie-response.interface';
 import { Observable } from 'rxjs';
 

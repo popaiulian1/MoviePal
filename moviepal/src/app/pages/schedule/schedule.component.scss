@@ -1,0 +1,115 @@
+@import '../../../variables.scss';
+
+.schedule-container {
+  padding: 2rem;
+  background: linear-gradient(135deg, $background 0%, $background 100%);
+  min-height: calc(100vh - 5rem);
+
+  ::ng-deep {
+    .ant-table {
+      background-color: $background;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      
+      .ant-table-thead > tr > th {
+        background-color: $background;
+        color: $accent;
+        font-weight: bold;
+        padding: 16px;
+        border-bottom: 2px solid $accent;
+      }
+      
+      .ant-table-tbody > tr > td {
+        padding: 16px;
+        border-bottom: 1px solid $light-gray;
+        transition: background-color 0.2s;
+      }
+      
+      .ant-table-tbody > tr:hover > td {
+        background-color: $background-light;
+      }
+    }
+
+    .ant-pagination {
+        margin: 16px 0;
+        
+        .ant-pagination-item-active {
+          border-color: $accent;
+          a {
+            color: $accent;
+          }
+        }
+        
+        .ant-pagination-item:hover {
+          border-color: $accent-light;
+          a {
+            color: $accent-light;
+          }
+        }
+      }
+  }
+  
+  .movie-poster {
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+  }
+  
+  .cinema-name {
+    font-weight: bold;
+    color: $accent;
+  }
+  
+  .movie-title {
+    font-weight: bold;
+    color: $text-light;
+  }
+  
+  .director-name {
+    color: $text-light;
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  .genre{
+    color: $text-light;
+    font-weight: 400;
+  }
+  
+  .showtime {
+    font-weight: bold;
+    background-color: $accent;
+    color: $text-light;
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+}
+
+@media (max-width: 768px) {
+  .schedule-container {
+    padding: 1rem;
+    
+    h1 {
+      font-size: 2rem;
+    }
+    
+    ::ng-deep .ant-table {
+      .ant-table-thead > tr > th,
+      .ant-table-tbody > tr > td {
+        padding: 12px 8px;
+      }
+    }
+    
+    .movie-poster {
+      width: 40px;
+      height: 60px;
+    }
+  }
+}
