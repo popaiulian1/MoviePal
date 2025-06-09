@@ -8,11 +8,11 @@ export const routes: Routes = [
   },
 
   {
-    path: 'home',
-    loadComponent: () =>
-      import('./pages/home.component').then((m) => m.HomeComponent),
+    path: 'home', loadComponent: () => import('./pages/home.component').then(m => m.HomeComponent),
   },
-
+  {
+    path: 'schedule', loadComponent: () => import('./pages/schedule/schedule.component').then(m => m.ScheduleComponent),
+  },
   {
     path: 'login',
     loadComponent: () =>

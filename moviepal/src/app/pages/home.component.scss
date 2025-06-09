@@ -6,7 +6,7 @@
   align-items: center;
   padding-top: 2rem;
   min-height: calc(100vh - 5rem);
-  background: linear-gradient(135deg, darken($primary-dark, 5%) 0%, $primary-dark 100%);
+  background: linear-gradient(135deg, $background, 0%, $background 100%);
   color: $text-primary;
   position: relative;
   overflow: hidden;

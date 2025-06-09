@@ -1,27 +1,32 @@
 // Background Colors
-$background: #F4F4F4 ;
-$background-light: lighten($background, 10%);
-$background-dark: darken($background, 10%);
+$background: #121212 ;
+$background-light: #1E1E1E;
+$background-dark: #0A0A0A;
 
 // Primary Colors
-$primary: #2E4057  ;
-$primary-light: lighten($primary, 10%);
-$primary-dark: darken($primary, 10%);
+$primary: #1F2A44  ;
+$primary-light: #2A3A5C;
+$primary-dark: #141C2E;
 
 // Secondary Colors
 $secondary: #E4572E  ;
-$secondary-light: lighten($secondary, 10%);
-$secondary-dark: darken($secondary, 10%);
+$secondary-light: #F06A42;
+$secondary-dark: #C13E1D;
 
 // Accent Colors
-$accent: #48A9A6;
-$accent-light: lighten($accent, 10%);
-$accent-dark: darken($accent, 10%);
+$accent: #6D4AFF;
+$accent-light: #8969FF;
+$accent-dark: #5A36DF;
+
+// Highlight Accent
+$highlight: #01B3E3;
+$highlight-light: #20C5F2;
+$highlight-dark: #0090BA;
 
 // Neutral Colors
 $white: #ffffff;
-$light-gray: #f5f5f5;
-$medium-gray: #eeeeeea0;
+$light-gray: #E0E0E0;
+$medium-gray: #9E9E9E;
 $dark-gray: #333333;
 
 // Overlay Colors

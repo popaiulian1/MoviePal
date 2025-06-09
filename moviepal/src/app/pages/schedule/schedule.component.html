@@ -1,0 +1,35 @@
+<div class = "schedule-main">
+  <div class="schedule-container">
+    <nz-table #basicTable [nzData]="moviesData" [nzPageSize]="8">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Movie</th>
+          <th>Director</th>
+          <th>Genre</th>
+          <th>Cinema</th>
+          <th>Showtime</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (data of basicTable.data; track data.entry.id) {
+          <tr>
+            <td>
+              <img
+                [src]="data.entry.posterUrl"
+                alt="{{data.entry.title}} Poster"
+                class="movie-poster"
+                style="width: 60px; height: 85px;"
+              >
+            </td>
+            <td><span class="movie-title">{{data.entry.title}}</span></td>
+            <td><span class="director-name">{{data.entry.director}}</span></td>
+            <td><span class="genre">{{data.entry.genre}}</span></td>
+            <td><span class="cinema-name">{{data.cinema.name || 'No cinema'}}</span></td>
+            <td><span class="showtime">{{data.entry.showTimes}}</span></td>
+          </tr>
+        }
+      </tbody>
+    </nz-table>
+  </div>
+</div>
