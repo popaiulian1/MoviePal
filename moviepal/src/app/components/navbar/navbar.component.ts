@@ -4,6 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { featuredMovie } from '../../interfaces/featured-movie.interface';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { MovieService } from '../../services/movie.service';
 
 @Component({
   selector: 'app-navbar',
@@ -15,13 +19,56 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 export class NavbarComponent {
   searchTerm: string = '';
   isUserMenuOpen: boolean = false;
+  searchResults: featuredMovie[] = [];
+  private searchSubject = new Subject<string>();
   
   @ViewChild('userMenuContainer') userMenuContainer!: ElementRef;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private movieService: MovieService) {
+    this.searchSubject.pipe(
+      debounceTime(300),
+      distinctUntilChanged()
+    ).subscribe(term => {
+      this.doSearch(term);
+    })
+  }
+
+  onSearchInput(){
+    if(this.searchTerm.length >= 2){
+      this.searchSubject.next(this.searchTerm);
+    }else{
+      this.searchResults = [];
+    }
+  }
+
+  doSearch(term: string) {
+    if (!term || term.length < 2) return;
+
+    this.movieService.getMoviesBySearchTerm(term, 0, 5).subscribe({
+      next: (response) => {
+        this.searchResults = response.content;
+      },
+      error: (error) => {
+        console.error('Search error:', error);
+        this.searchResults = [];
+      }
+    })
+  }
+
+  selectMovie(movie: featuredMovie) {
+    this.searchTerm = '';
+    this.searchResults = [];
+    this.router.navigate(['/movies', movie.id]);
+  }
 
   onSearchClick() {
-    // TODO: Search Logic
+    if (this.searchTerm.trim()) {
+      this.router.navigate(['/search'], { 
+        queryParams: { q: this.searchTerm }
+      });
+      this.searchTerm = '';
+      this.searchResults = [];
+    }
   }
   
   toggleUserMenu() {
@@ -33,6 +80,13 @@ export class NavbarComponent {
   clickOutside(event: MouseEvent) {
     if (this.isUserMenuOpen && this.userMenuContainer && !this.userMenuContainer.nativeElement.contains(event.target)) {
       this.isUserMenuOpen = false;
+    }
+
+    // Close search results if click is outside the search container
+    const searchContainer = document.querySelector('.search-container');
+    if (this.searchResults.length > 0 && searchContainer && 
+        !searchContainer.contains(event.target as Node)) {
+      this.searchResults = [];
     }
   }
 }

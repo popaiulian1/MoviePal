@@ -11,10 +11,11 @@
   </nav>
 
   <nav class="nav-right">
-    <span class="search-container">
+    <div class="search-container">
       <input
         type="text"
         [(ngModel)]="searchTerm"
+        (input)="onSearchInput()"
         placeholder="Search..."
         class="search-input"
       />
@@ -24,7 +25,18 @@
         class="icon-img"
         (click)="onSearchClick()"
       />
-    </span>
+
+      @if(searchResults.length > 0){
+        <div class = "search-results">
+          @for (movie of searchResults; track movie.id){
+            <div class="search-result-item" (click)="selectMovie(movie)">
+              <img [src]="movie.posterUrl" alt="{{ movie.title }}" class="result-poster" />
+              <span class="result-title">{{ movie.title }}</span>
+            </div>
+          }
+        </div>
+      }
+    </div>
     
     <div class="user-menu" #userMenuContainer>
       <span nz-icon nzType="user" nzTheme="outline" (click)="toggleUserMenu()"></span>

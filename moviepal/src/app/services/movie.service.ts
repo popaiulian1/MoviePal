@@ -2,7 +2,8 @@ import {BASE_API_URL} from '../utils/api.url';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MovieResponse } from '../interfaces/movie-response.interface';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -26,9 +27,30 @@ export class MovieService {
         return this.http.get<MovieResponse>(`${BASE_API_URL}/movies/genre/${genre}?page=${page}&size=${size}`);
     }
 
-    getMoviesBySearchTerm(searchTerm: string, page: number, size: number): Observable<MovieResponse> {
-        console.log('Fetching movies with search term:', searchTerm, 'page:', page, 'size:', size);
-        return this.http.get<MovieResponse>(`${BASE_API_URL}/movies/search?term=${searchTerm}&page=${page}&size=${size}`);
+    getMoviesBySearchTerm(searchTerm: string, page: number, size: number): Observable<any> {
+        console.log('Fetching movies with search term:', searchTerm);
+        return this.http.get<any>(`${BASE_API_URL}/movies/search?query=${encodeURIComponent(searchTerm)}`)
+            .pipe(
+                map(response => {
+                    // Handle both potential response formats
+                    if (Array.isArray(response)) {
+                        // API returned an array directly
+                        console.log('Search response is an array:', response);
+                        return { content: response };
+                    } else if (response && response.content) {
+                        // API returned the expected page format
+                        return response;
+                    } else {
+                        // Unexpected format, return empty content
+                        console.warn('Unexpected search response format:', response);
+                        return { content: [] };
+                    }
+                }),
+                catchError(error => {
+                  console.error('Error fetching movies by search term:', error);
+                  return of({ content: [] }); // Return empty content on error
+                })
+            );
     }
 
     getMoviesByActor(actorName: string, page: number, size: number): Observable<MovieResponse> {
