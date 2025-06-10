@@ -1,5 +1,16 @@
 @import '../../../variables.scss';
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .schedule-container {
   padding: 2rem;
   background: linear-gradient(135deg, $background 0%, $background 100%);
@@ -7,32 +18,72 @@
 
   ::ng-deep {
     .ant-table {
+      animation: fadeInUp 0.6s ease-out forwards;
       background-color: $background;
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+
+      .ant-table-thead > tr {
+        animation: fadeInUp 0.5s ease-out forwards;
+      }
       
       .ant-table-thead > tr > th {
         background-color: $background;
-        color: $accent;
+        color: $text-light;
         font-weight: bold;
         padding: 16px;
-        border-bottom: 2px solid $accent;
+        border-bottom: 2px solid $text-light;
+      }
+
+      .ant-table-tbody > tr {
+        opacity: 0;
+        animation: fadeInUp 0.4s ease-out forwards;
+
+        @for $i from 1 through 10 {
+          &:nth-child(#{$i}) {
+            animation-delay: $i * 0.2s;
+          }
+        }
       }
       
       .ant-table-tbody > tr > td {
         padding: 16px;
         border-bottom: 1px solid $light-gray;
-        transition: background-color 0.2s;
+        transition: background-color 0.2s ease, transform 0.2s ease;
+
+        button{
+          font-size: 1.2rem;
+          color: $background;
+          font-weight: 500;
+          border-radius: 20px;
+          padding: 8px 16px;
+          border: 1px solid $text-light;
+          background-color: $text-light;
+          transition: transform 0.2s ease, background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
+
+          &:hover{
+            background-color: $accent-light;
+            color: $text-light;
+            border: $accent-light;
+            transform: scale(1.06);
+          }
+        }
       }
       
       .ant-table-tbody > tr:hover > td {
         background-color: $background-light;
+        transform: scale(1.04);
+        border-top: 3px solid $light-gray;
+        border-bottom: 3px solid $light-gray;
       }
     }
 
     .ant-pagination {
+        opacity: 0;
         margin: 16px 0;
+        animation: fadeInUp 0.7s ease-out forwards;
+        animation-delay: 2s;
         
         .ant-pagination-item-active {
           border-color: $accent;
@@ -56,14 +107,14 @@
     transition: transform 0.3s ease;
     
     &:hover {
-      transform: scale(1.1);
+      transform: scale(1.25);
       box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     }
   }
   
   .cinema-name {
     font-weight: bold;
-    color: $accent;
+    color: $text-light;
   }
   
   .movie-title {
@@ -83,9 +134,10 @@
   }
   
   .showtime {
+    font-size: 1rem;
     font-weight: bold;
-    background-color: $accent;
-    color: $text-light;
+    background-color: $text-light;
+    color: $background;
     padding: 4px 8px;
     border-radius: 4px;
     display: inline-block;

@@ -9,6 +9,7 @@
           <th>Genre</th>
           <th>Cinema</th>
           <th>Showtime</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -20,6 +21,7 @@
                 alt="{{data.entry.title}} Poster"
                 class="movie-poster"
                 style="width: 60px; height: 85px;"
+                (click)="routeToMovie(data.entry)"
               >
             </td>
             <td><span class="movie-title">{{data.entry.title}}</span></td>
@@ -27,6 +29,7 @@
             <td><span class="genre">{{data.entry.genre}}</span></td>
             <td><span class="cinema-name">{{data.cinema.name || 'No cinema'}}</span></td>
             <td><span class="showtime">{{data.entry.showTimes}}</span></td>
+            <td><button class="book-button" (click)="routeToMovie(data.entry)">Book Now</button></td>
           </tr>
         }
       </tbody>

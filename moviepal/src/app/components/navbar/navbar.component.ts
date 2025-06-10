@@ -109,6 +109,7 @@ export class NavbarComponent {
     const searchContainer = document.querySelector('.search-container');
     if (this.searchResults.length > 0 && searchContainer && 
         !searchContainer.contains(event.target as Node)) {
+      this.searchTerm = '';
       this.searchResults = [];
     }
   }
