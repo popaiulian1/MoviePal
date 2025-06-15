@@ -47,6 +47,7 @@
       
       <div class="dropdown-menu" [class.show]="isUserMenuOpen">
         @if (isLoggedIn) {
+          <a [routerLink]="['/profile', ]">View Profile</a>
           <a routerLink="/tickets">Tickets</a>
           <a (click)="logout()">Logout</a>
         } @else {
