@@ -27,14 +27,8 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> register(@Valid @RequestBody User user) {
         try {
-            User savedUser = userService.register(user);
-
-            UserDto userDto = new UserDto();
-            userDto.setId(savedUser.getId());
-            userDto.setUsername(savedUser.getUsername());
-            userDto.setEmail(savedUser.getEmail());
-
-            return ResponseEntity.ok(userDto);
+            userService.register(user);
+            return ResponseEntity.ok(new AuthResponse(jwtUtil.generateToken(user)));
 
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());

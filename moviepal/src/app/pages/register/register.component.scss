@@ -1,0 +1,135 @@
+@import "../../../variables.scss";
+
+.login-page {
+  background: linear-gradient(
+    135deg,
+    $background 0%,
+    $background-dark 100%
+  );
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.1) 2px,
+      transparent 1px
+    );
+    background-size: 20px 20px;
+    opacity: 0.3;
+    pointer-events: none;
+  }
+}
+
+.login-container {
+  max-width: 500px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background-color: $background;
+  border-radius: 12px;
+  color: $text-light;
+  font-family: "Segoe UI", sans-serif;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+
+  h2 {
+    color: $text-light;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: $text-light;
+  }
+
+  input,
+  input[nz-input] {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #444;
+    background: $background-light;
+    color: $text-light;
+    font-weight: 400;
+    transition: border-color 0.2s;
+
+    &:focus {
+      border-color: $accent;
+      outline: none;
+    }
+  }
+
+  .password-strength-indicator {
+  font-weight: 600;
+  margin-top: 0.5rem;
+
+  &.weak {
+    color: $danger
+  }
+  &.medium {
+    color: $warning
+  }
+  &.strong {
+    color: $success
+  }
+}
+}
+
+button,
+button[nz-button] {
+  width: 100%;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  background-color: $accent;
+  font-weight: bold;
+  color: white;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  font-size: 1.1rem;
+
+  &:hover {
+    background-color: $accent-light;
+    transform: translateY(-2px);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.error {
+  color: #ff6b6b;
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+@media (max-width: 600px) {
+  .login-container {
+    padding: 1rem;
+    margin: 2rem 0.5rem;
+  }
+  h2 {
+    font-size: 1.3rem;
+  }
+}

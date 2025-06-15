@@ -43,6 +43,20 @@ export class AuthService {
     );
   }
 
+  register(username: string, email: string, password: string): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`${BASE_API_URL}/auth/register`, { username, email, password }).pipe(
+      tap(response => {
+        this.storageType.setItem('token', response.token);
+        const user = this.getUserFromToken(response.token);
+        if (user) {
+          this.currentUserSubject.next(user);
+        } else {
+          console.error('Failed to parse user from token after registration');
+        }
+      })
+    );
+  }
+
   private checkAuthStatus() {
     // Check both storage types
     let token = localStorage.getItem('token') || sessionStorage.getItem('token');

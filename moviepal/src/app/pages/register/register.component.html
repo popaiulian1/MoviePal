@@ -1,0 +1,60 @@
+<div class="login-page">
+  <div class="login-container">
+    <h2>Register for MoviePal</h2>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input id="username" type="text" formControlName="username" />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email" formControlName="email" />
+        @if (registerForm.get('email')?.errors?.['email'] && registerForm.get('email')?.touched) {
+            <div class="error">
+            Please enter a valid email address.
+            </div>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" type="password" formControlName="password" />
+        <div 
+          class="password-strength-indicator"
+          [ngClass]="{
+            'weak': (registerForm.get('password')?.value | passwordStrength) === 'Weak',
+            'medium': (registerForm.get('password')?.value | passwordStrength) === 'Medium',
+            'strong': (registerForm.get('password')?.value | passwordStrength) === 'Strong'
+          }"
+        >
+          Strength: {{ registerForm.get('password')?.value | passwordStrength }}
+        </div>
+        @if (registerForm.get('password')?.errors?.['passwordStrength'] &&
+        registerForm.get('password')?.touched){
+        <div class="error">
+          Password must be at least 6 characters and contain a number and an
+          uppercase letter.
+        </div>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input id="confirmPassword" type="password" formControlName="confirmPassword" />
+        @if (registerForm.errors?.['passwordsMismatch'] && registerForm.get('confirmPassword')?.touched) {
+        <div class="error">
+          Passwords do not match.
+        </div>
+        }
+      </div>
+
+      <button type="submit" [disabled]="registerForm.invalid">Register</button>
+
+      @if (errorMsg) {
+        <div class="error">{{ errorMsg }}</div>
+      }
+    </form>
+  </div>
+</div>
