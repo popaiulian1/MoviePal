@@ -61,12 +61,17 @@
           padding: 8px 16px;
           border: 1px solid $text-light;
           background-color: $text-light;
-          transition: transform 0.2s ease, background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
+          transition: transform 0.2s ease, 
+                      background-color 0.2s ease-out, color 0.2s ease-out, 
+                      border-color 0.2s ease-out,
+                      color 0.2s ease-out,
+                      box-shadow 0.2s ease-out;
 
           &:hover{
             background-color: $accent-light;
             color: $text-light;
             border: $accent-light;
+            box-shadow: 0 4px 16px rgba($accent, 0.18);
             transform: scale(1.06);
           }
         }

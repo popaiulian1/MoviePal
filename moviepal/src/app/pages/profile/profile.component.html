@@ -1,1 +1,49 @@
-<p>profile works!</p>
+<div class = "profile-container">
+    <div class = "profile-header">
+        <h1 class = "profile-h1" [class.animate]="animate">
+            Welcome,@for (letter of username.split(''); let i = $index; track i) {
+                <span class="username-letter" [style.--i]="i">{{ letter }}</span>
+            }
+        </h1>
+    </div>
+
+    <div class = "profile-content">
+        <div class = "profile-info">
+            <h2 class = "profile-h2">Profile Information:</h2>
+            <p><span nz-icon nzType="user" nzTheme="outline"></span>
+                <strong>Username:</strong> {{username}}
+            </p>
+            <p><span nz-icon nzType="mail" nzTheme="outline"></span>
+                <strong>Email:</strong> {{email}}
+            </p>
+            <button class = "edit-button" (click)="editProfile()">Edit Profile</button>
+    </div>
+
+    @if (isEditScreen) {
+        <div class="edit-profile-popup-backdrop" (click)="cancelEdit()">
+            <div class="edit-profile" (click)="$event.stopPropagation()">
+                <h2 class = "profile-h2">Edit Profile</h2>
+                <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+                    <label for="username">
+                        <span nz-icon nzType="user" nzTheme="outline"></span>
+                        Username:
+                    </label>
+                    <input id="username" formControlName="username" type="text" />
+                    @if(profileForm.get('username')?.invalid && profileForm.get('username')?.touched) {
+                        <div class="error-message">Username must be at least 3 characters long.</div>
+                    }
+                    <label for="email">
+                        <span nz-icon nzType="mail" nzTheme="outline"></span>
+                        Email:
+                    </label>
+                    <input id="email" formControlName="email" type="email" />
+                    @if(profileForm.get('email')?.invalid && profileForm.get('email')?.touched) {
+                        <div class="error-message">Please enter a valid email address.</div>
+                    }
+                    <button type="submit" class = "save-button" [disabled]="profileForm.invalid">Save Changes</button>
+                    <button type="button" class = "cancel-button" (click)="cancelEdit()">Cancel</button>
+                </form>
+            </div>
+        </div>
+    }
+</div>

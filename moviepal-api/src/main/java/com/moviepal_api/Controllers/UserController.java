@@ -36,9 +36,11 @@ public class UserController {
 
         return userRepository.findByUsername(username)
                 .map(user -> {
-                    // Only allow updating email, not username
                     if (userDto.getEmail() != null) {
                         user.setEmail(userDto.getEmail());
+                    }
+                    if(userDto.getUsername() != null && !userDto.getUsername().equals(user.getUsername())){
+                        user.setUsername(userDto.getUsername());
                     }
 
                     User savedUser = userRepository.save(user);

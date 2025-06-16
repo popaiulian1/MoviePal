@@ -24,7 +24,7 @@ export const routes: Routes = [
       import('./pages/register/register.component').then(m => m.RegisterComponent), 
   },
   {
-    path: 'profile/:id',
+    path: 'profile',
     loadComponent: () => import('./pages/profile/profile.component').then(m => m.ProfileComponent),
   }
 ];

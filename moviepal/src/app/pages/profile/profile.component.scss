@@ -1,0 +1,318 @@
+@import '../../../variables.scss';
+@import 'https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet';
+
+.profile-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 91.3%;
+    background-color: $background;
+
+    &::before {
+    content: '';
+    position: absolute;
+    top: 75px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.1) 2px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+    .profile-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        animation: fadeInDown 0.8s ease-out;
+
+        .profile-h1 {
+            display: inline-block;
+            font-family: 'Press Start 2P', system-ui;
+            font-size: 2.4rem;
+            color: $text-primary;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            overflow: show;
+            will-change: transform, color;
+            
+            .username-letter{
+                display: inline-block;
+                font-family: 'Press Start 2P', system-ui;
+                font-size: 2.4rem;
+                color: $text-primary;
+                margin-bottom: 10px;
+                transition: color 0.3s;
+                cursor: pointer;
+                will-change: transform, color;
+            }
+
+            &.animate .username-letter,
+            &:hover .username-letter {
+                animation: wave 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+                animation-delay: calc(var(--i) * 0.08s);
+            }
+        }
+    }
+
+    .profile-content {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 2.5rem;
+        background-color: $background-light;
+        border-radius: 22px;
+        padding: 3rem 2.5rem 2.5rem 2.5rem;
+        width: 100%;
+        max-width: 1000px;
+        margin-top: 2.5rem;
+        position: relative;
+        overflow: visible;
+        border: 5px solid $text-light;
+        animation: fadeInUp 0.5s ease-out;
+        transition: transform 0.2s, box-shadow 0.4s;
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+        }
+
+        .profile-info {
+            flex: 1 1 0;
+            min-width: 260px;
+            margin-bottom: 0;
+            text-align: left;
+            position: relative;
+            z-index: 1;
+            margin-right: 0;
+
+            .profile-h2 {
+                font-size: 2rem;
+                color: $text-light;
+                margin-bottom: 1.3rem;
+                max-width: 160px;
+                font-family: 'Press Start 2P', system-ui;
+                letter-spacing: 2px;
+                text-shadow: 0 2px 8px rgba($accent, 0.08);
+            }
+
+            p {
+                display: flex;
+                align-items: center;
+                font-size: 1.12rem;
+                letter-spacing: 1px;
+                margin: 0.9rem 0;
+                border-radius: 8px;
+                padding: 0.7rem 1rem;
+                box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+                color: $text-light;
+
+                span[nz-icon] {
+                    margin-right: 0.8rem;
+                    color: $text-light;
+                    font-size: 1.6rem;
+                }
+
+                strong {
+                    margin-right: 0.3rem;
+                    color: $text-light;
+                    font-weight: 600;
+                }
+            }
+
+            .edit-button {
+                margin-top: 1.7rem;
+                padding: 0.6rem 1.5rem;
+                background-color: $accent;
+                color: #fff;
+                border: none;
+                border-radius: 10px;
+                font-weight: bold;
+                font-size: 1.08rem;
+                cursor: pointer;
+                box-shadow: 0 2px 8px rgba($accent, 0.13);
+                transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+
+                &:hover {
+                    background: $accent-light;
+                    transform: translateY(-2px) scale(1.05);
+                    box-shadow: 0 4px 16px rgba($accent, 0.18);
+                }
+            }
+        }
+    }
+
+    .edit-profile-popup-backdrop {
+        position: absolute;
+        inset: 0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: right;
+        margin-right: 10%;
+        border-radius: 22px;
+        animation: fadeInBackdrop 0.3s;
+
+        .edit-profile {
+            width: 340px;
+            min-width: 260px;
+            background-color: $background;
+            border: 5px solid $text-light;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.09);
+            padding: 2rem 1.5rem 1.5rem 1.5rem;
+            margin-top: 0;
+            position: relative;
+            z-index: 1;
+
+            .profile-h2 {
+                font-size: 1.2rem;
+                color: $accent;
+                margin-bottom: 1rem;
+                font-family: 'Press Start 2P', system-ui;
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                gap: 1.2rem;
+
+                label {
+                    font-weight: 600;
+                    color: $text-light;
+                    font-size: 1.0rem;
+                    margin-bottom: 0.3rem;
+                    display: flex;
+                    align-items: center;
+
+                    span[nz-icon] {
+                        margin-right: 0.5rem;
+                        font-size: 1.2rem;
+                        color: $text-light;
+                    }
+                }
+
+                input[type="text"],
+                input[type="email"] {
+                    padding: 0.6rem 1rem;
+                    border: 1.5px solid $accent-light;
+                    border-radius: 8px;
+                    font-size: 1.0rem;
+                    font-family: "SegoeUI", sans-serif;
+                    font-weight: 600;
+                    letter-spacing: 1px;
+                    background: $background-light;
+                    color: $text-light;
+                    transition: border 0.2s, box-shadow 0.2s;
+                    box-shadow: 0 1px 4px rgba($accent, 0.04);
+
+                    &:focus {
+                        border-color: $accent-light;
+                        outline: none;
+                        box-shadow: 0 2px 8px rgba($accent, 0.13);
+                    }
+                }
+
+                .error-message {
+                    color: $danger;
+                    font-size: 0.97rem;
+                    margin-top: -0.5rem;
+                    margin-bottom: 0.5rem;
+                    padding-left: 0.2rem;
+                }
+
+                .save-button {
+                    margin-top: 0.7rem;
+                    padding: 0.6rem 1.5rem;
+                    background-color: $accent;
+                    color: #fff;
+                    border: none;
+                    border-radius: 10px;
+                    font-weight: bold;
+                    font-size: 1.08rem;
+                    cursor: pointer;
+                    transition: background-color 0.2s, 
+                                transform 0.2s, 
+                                box-shadow 0.2s;
+
+                    &:hover:enabled {
+                        background-color: $accent-light;
+                        transform: translateY(-2px) scale(1.04);
+                        box-shadow: 0 4px 16px rgba($accent, 0.18);
+                    }
+
+                    &:disabled {
+                        background: $background-light;
+                        color: $text-light;
+                        cursor: not-allowed;
+                    }
+                }
+
+                .cancel-button {
+                    margin-top: 0.5rem;
+                    padding: 0.5rem 1.2rem;
+                    background: transparent;
+                    color: $accent;
+                    border: 1.5px solid $accent;
+                    border-radius: 10px;
+                    font-weight: bold;
+                    font-size: 1rem;
+                    cursor: pointer;
+                    transition: background-color 0.2s, color 0.2s, border 0.2s;
+
+                    &:hover {
+                        background-color: $accent;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@keyframes wave {
+  0%   { transform: translateY(0); color: $text-light; }
+  20%  { transform: translateY(-12px); color: $accent}
+  40%  { transform: translateY(0); color: $text-light; }
+  100% { transform: translateY(0); color: $text-primary; }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 800px) {
+  .profile-content {
+    flex-direction: column;
+    gap: 1.5rem;
+
+    .edit-profile,
+    .profile-info {
+      width: 100%;
+      min-width: 0;
+    }
+  }
+}
