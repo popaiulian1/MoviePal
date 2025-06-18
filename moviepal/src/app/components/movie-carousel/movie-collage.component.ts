@@ -77,18 +77,17 @@ export class MovieCollageComponent implements OnInit {
   get paginatedMovies(): MovieWithRotation[] {
     const start = this.currentPage * this.moviesPerPage;
     const end = start + this.moviesPerPage;
-
-    // Load more if we're close to the end of loaded movies
-    if (end + this.moviesPerPage > this.movies.length && !this.allLoaded && !this.loading) {
-      this.loadMovies();
-    }
-
     return this.movies.slice(start, end);
   }
 
   nextPage(): void {
     if (this.hasMoreMovies()) {
       this.currentPage++;
+
+      const end = (this.currentPage + 1) * this.moviesPerPage;
+      if (end >= this.movies.length && !this.allLoaded && !this.loading) {
+        this.loadMovies();
+      }
     }
   }
 

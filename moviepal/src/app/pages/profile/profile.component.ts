@@ -42,11 +42,15 @@ export class ProfileComponent implements OnInit {
   }
 
   private loadUserProfile() {
+    this.authService.refreshAuthStatus();
+
     const userToken = localStorage.getItem('token') || sessionStorage.getItem('token');
     if (!userToken) {
       console.error('No user token found. User is not authenticated.');
+      this.router.navigate(['/login']);
       return;
     }
+
 
     const header = new HttpHeaders({
       Authorization: `Bearer ${userToken}`

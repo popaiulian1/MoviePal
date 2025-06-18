@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { BASE_API_URL } from '../utils/api.url';
+import { Router } from '@angular/router';
 
 interface LoginResponse {
   token: string;
@@ -20,7 +21,7 @@ export class AuthService {
   public currentUser = this.currentUserSubject.asObservable();
   private storageType: Storage = localStorage; // Default to localStorage
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.checkAuthStatus();
   }
 
@@ -55,6 +56,26 @@ export class AuthService {
         }
       })
     );
+  }
+
+  refreshAuthStatus(): void {
+    this.http.post<LoginResponse>(`${BASE_API_URL}/auth/refresh`, {"token": this.getToken() }).pipe(
+      tap(response => {
+        if (response.token) {
+          this.storageType.setItem('token', response.token);
+          const user = this.getUserFromToken(response.token);
+          if (user) {
+            this.currentUserSubject.next(user);
+          } else {
+            console.error('Failed to parse user from token after refresh');
+          }
+        }
+      })).subscribe({
+      error: (error) => {
+        console.error('Error refreshing auth status:', error);
+        this.logout();
+        this.router.navigate(['/login']);
+      }});
   }
 
   private checkAuthStatus() {
