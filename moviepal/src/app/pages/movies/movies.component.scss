@@ -13,8 +13,8 @@
   padding: 2rem 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
-  background-color: #121212; 
-  color: #f0f0f0;            
+  background-color: #121212;
+  color: #f0f0f0;
 }
 
 .page-title {
@@ -32,7 +32,20 @@
 }
 
 .movie-card {
-  background-color: #1e1e1e; 
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+  transform: translateY(30px);
+  will-change: transform, opacity;
+
+  @for $i from 1 through 50 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.1}s;
+    }
+  }
+}
+
+.movie-card-inner {
+  background-color: #1e1e1e;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -40,17 +53,7 @@
   overflow: hidden;
   text-align: center;
   padding: 1rem;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeInUp 0.6s ease-out forwards;
 
-  // Stagger animation per card
-  @for $i from 1 through 20 {
-    &:nth-child(#{$i}) {
-      animation-delay: #{$i * 0.1}s;
-    }
-  }
-  
   &:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
