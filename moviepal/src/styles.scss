@@ -10,3 +10,25 @@
 .body{
     background-color: $background;
 }
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  background-color: #121212;
+  color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.custom-dialog-panel {
+  background-color: #1e1e1e;
+  border-radius: 12px !important;
+  color: #f0f0f0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+  padding: 0; // remove extra padding if needed
+  overflow: hidden; // clip content to border-radius
+}
+
+
+
