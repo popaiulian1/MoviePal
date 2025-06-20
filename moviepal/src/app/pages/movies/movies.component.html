@@ -1,15 +1,13 @@
 <div class="page-container">
   <h2 class="page-title">All Movies</h2>
   <div class="movie-grid">
-    <div
-      *ngFor="let movie of movies"
-      class="movie-card"
-      (click)="openMovieDetails(movie.id)"
-    >
-      <div class="movie-card-inner">
-        <img [src]="movie.posterUrl" [alt]="movie.title" />
-        <h4>{{ movie.title }}</h4>
+    @for (movie of movies; track movie.id){
+      <div class = "movie-card" (click)="openMovieDetails(movie.id)">
+          <div class = "movie-card-inner">
+            <img [src]="movie.posterUrl" [alt]="movie.title" />
+            <h4>{{ movie.title }}</h4>
+          </div>
       </div>
-    </div>
+    }
   </div>
 </div>

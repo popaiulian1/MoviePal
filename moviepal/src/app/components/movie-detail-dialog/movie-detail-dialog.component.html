@@ -13,7 +13,10 @@
     <label>Director:</label><span>{{ data.entry.director }}</span>
   </div>
 
-  <div class="detail-section" *ngIf="data.cinema">
-    <label>Cinema:</label><span>{{ data.cinema.name }} - {{ data.cinema.location }}</span>
+  @if (data.cinema){
+      <div class="detail-section">
+      <label>Cinema:</label><span>{{ data.cinema.name }} - {{ data.cinema.location }}</span>
   </div>
+  }
+
 </div>
