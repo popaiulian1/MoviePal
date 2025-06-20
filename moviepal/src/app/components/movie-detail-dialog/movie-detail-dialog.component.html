@@ -1,22 +1,14 @@
-<div class="movie-detail-dialog">
-  <img [src]="data.entry.posterUrl" alt="{{ data.entry.title }}" class="poster" />
-
-  <h2>{{ data.entry.title }}</h2>
-
-  <p class="description">{{ data.entry.description }}</p>
-
-  <div class="detail-section">
-    <label>Genre:</label><span>{{ data.entry.genre }}</span>
+<div class = "container">
+  <div class = "image-container">
+    <img [src]="data?.entry?.posterUrl" alt="Movie Poster" class="movie-poster">
   </div>
 
-  <div class="detail-section">
-    <label>Director:</label><span>{{ data.entry.director }}</span>
+  <div class = "details-container">
+    <h2 class="movie-title">{{ data?.entry?.title }}</h2>
+    <p class="movie-description">{{ data?.entry?.description }}</p>
+    <p class="movie-release-date">Release Date: {{ data?.entry?.releaseDate }}</p>
+    <p class="movie-rating">Rating: {{ data?.entry?.rating }}</p>
+    <button mat-button>Close</button>
   </div>
-
-  @if (data.cinema){
-      <div class="detail-section">
-      <label>Cinema:</label><span>{{ data.cinema.name }} - {{ data.cinema.location }}</span>
-  </div>
-  }
-
+  
 </div>

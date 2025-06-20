@@ -3,7 +3,7 @@ export interface Ticket {
     userId: string;
     movieId: string;
     cinemaId: string;
-    showTime: Date;
+    showTime: string;
     numberOfSeats: number;
     totalPrice: number;
     bookingDate: string;

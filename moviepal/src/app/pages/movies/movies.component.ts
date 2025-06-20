@@ -6,6 +6,7 @@ import { MovieDetailed } from '../../interfaces/movie-detailed.interface';
 import { MovieResponse } from '../../interfaces/movie-response.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { MovieDetailDialogComponent } from '../../components/movie-detail-dialog/movie-detail-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movies',
@@ -20,7 +21,7 @@ export class MoviesComponent implements OnInit {
   size = 34;
   selectedMovie: featuredMovie | null = null;
 
-  constructor(private movieService: MovieService,  private dialog: MatDialog) {}
+  constructor(private movieService: MovieService,  private router: Router) {}
 
   ngOnInit(): void {
     this.movieService.getAllMovies(this.page, this.size).subscribe({
@@ -34,18 +35,22 @@ export class MoviesComponent implements OnInit {
   }
 
   openMovieDetails(movieId: string) {
-    this.movieService.getMovieById(movieId, true).subscribe({
-      next: (detailed: MovieDetailed) => {
-        this.dialog.open(MovieDetailDialogComponent, {
-          data: detailed,
-          width: '400px',
-          maxHeight:'90vh',
-          panelClass: 'custom-dialog-panel'
-        });
-      },
-      error: (err) => {
-        console.error('Error loading movie details:', err);
-      },
+    // this.movieService.getMovieById(movieId, true).subscribe({
+    //   next: (detailed: MovieDetailed) => {
+    //     this.dialog.open(MovieDetailDialogComponent, {
+    //       data: detailed,
+    //       width: '1000px',
+    //       maxHeight:'85vh',
+    //       panelClass: 'custom-dialog-panel'
+    //     });
+    //   },
+    //   error: (err) => {
+    //     console.error('Error loading movie details:', err);
+    //   },
+    // });
+
+    this.router.navigate(['/movie', movieId]).catch((err) => {
+      console.error('Error navigating to movie details:', err);
     });
   }
 }
