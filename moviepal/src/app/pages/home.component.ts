@@ -6,6 +6,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { MovieCollageComponent } from "../components/movie-carousel/movie-collage.component";
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -15,5 +16,11 @@ import { MovieCollageComponent } from "../components/movie-carousel/movie-collag
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
+
+  constructor (private authService: AuthService) {
+    // Fixes error where user information is still displayed but the token is expired
+    // Refresh token logic is not handled yet :P
+    this.authService.refreshAuthStatus();
+  }
   
 }

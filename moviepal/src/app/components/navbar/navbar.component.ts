@@ -53,6 +53,8 @@ export class NavbarComponent {
   logout(){
     this.authService.logout();
     this.isUserMenuOpen = false;
+    window.localStorage.removeItem('token');
+    window.sessionStorage.removeItem('user');
     this.router.navigate(['/home']);
   }
 

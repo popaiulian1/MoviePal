@@ -1,0 +1,64 @@
+[{
+  "_id": {
+    "$oid": "68337bcf445a41f4a0e812ca"
+  },
+  "userId": "testuser",
+  "movieId": "68330fa379ff34b2ae344c7a",
+  "cinemaId": "68330386f1db867e3eb4f9c1",
+  "showTime": "21:00",
+  "numberOfSeats": 4,
+  "totalPrice": 74,
+  "bookingDate": {
+    "$date": "2025-05-25T20:21:35.223Z"
+  },
+  "status": "BOOKED",
+  "_class": "com.moviepal_api.Models.Ticket"
+},
+{
+  "_id": {
+    "$oid": "68337bf6445a41f4a0e812cb"
+  },
+  "userId": "testuser",
+  "movieId": "68330fa379ff34b2ae344c73",
+  "cinemaId": "68330386f1db867e3eb4f9c2",
+  "showTime": "21:00",
+  "numberOfSeats": 1,
+  "totalPrice": 13.99,
+  "bookingDate": {
+    "$date": "2025-05-25T20:22:14.938Z"
+  },
+  "status": "BOOKED",
+  "_class": "com.moviepal_api.Models.Ticket"
+},
+{
+  "_id": {
+    "$oid": "68337cef445a41f4a0e812cc"
+  },
+  "userId": "testuser",
+  "movieId": "68330fa379ff34b2ae344c70",
+  "cinemaId": "68330386f1db867e3eb4f9c1",
+  "showTime": "21:00",
+  "numberOfSeats": 1,
+  "totalPrice": 15.99,
+  "bookingDate": {
+    "$date": "2025-05-25T20:26:23.943Z"
+  },
+  "status": "BOOKED",
+  "_class": "com.moviepal_api.Models.Ticket"
+},
+{
+  "_id": {
+    "$oid": "68338051445a41f4a0e812cd"
+  },
+  "userId": "testuser",
+  "movieId": "68330fa379ff34b2ae344c7a",
+  "cinemaId": "68330386f1db867e3eb4f9c2",
+  "showTime": "21:00",
+  "numberOfSeats": 1,
+  "totalPrice": 18.5,
+  "bookingDate": {
+    "$date": "2025-05-25T20:40:49.279Z"
+  },
+  "status": "BOOKED",
+  "_class": "com.moviepal_api.Models.Ticket"
+}]

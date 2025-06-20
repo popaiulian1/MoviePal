@@ -17,7 +17,8 @@ import { MovieDetailDialogComponent } from '../../components/movie-detail-dialog
 export class MoviesComponent implements OnInit {
   movies: featuredMovie[] = [];
   page = 0;
-  size = 20;
+  size = 34;
+  selectedMovie: featuredMovie | null = null;
 
   constructor(private movieService: MovieService,  private dialog: MatDialog) {}
 
