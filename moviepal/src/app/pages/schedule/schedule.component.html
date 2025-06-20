@@ -29,7 +29,7 @@
             <td><span class="genre">{{data.entry.genre}}</span></td>
             <td><span class="cinema-name">{{data.cinema.name || 'No cinema'}}</span></td>
             <td><span class="showtime">{{data.entry.showTimes}}</span></td>
-            <td><button class="book-button" (click)="routeToMovie(data.entry)">Book Now</button></td>
+            <td><button class="book-button" (click)="bookTicket(data)">Book Now</button></td>
           </tr>
         }
       </tbody>
