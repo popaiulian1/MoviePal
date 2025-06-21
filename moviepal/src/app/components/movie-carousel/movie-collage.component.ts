@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { MovieResponse } from '../../interfaces/movie-response.interface';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { MovieService } from '../../services/movie.service';
+import { RouterLink } from '@angular/router';
 
 interface MovieWithRotation extends featuredMovie {
   rotation?: number;
@@ -13,7 +14,7 @@ interface MovieWithRotation extends featuredMovie {
 @Component({
   selector: 'app-movie-collage',
   standalone: true,
-  imports: [HttpClientModule, CommonModule, NzIconModule],
+  imports: [HttpClientModule, CommonModule, NzIconModule, RouterLink],
   templateUrl: './movie-collage.component.html',
   styleUrl: './movie-collage.component.scss'
 })

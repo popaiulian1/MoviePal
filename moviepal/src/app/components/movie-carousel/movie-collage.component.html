@@ -2,7 +2,9 @@
   <div class="movie-collage">
     @for (movie of paginatedMovies; track movie.id) {
       <div class="movie-poster" [style.transform]="'rotate(' + movie.rotation + 'deg)'">
-        <img [src]="movie.posterUrl" alt="{{ movie.title }}">
+        <a [routerLink]="'/movie/' + movie.id">
+          <img [src]="movie.posterUrl" alt="{{ movie.title }}" />
+        </a>
       </div>
     }
     @empty {

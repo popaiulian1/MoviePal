@@ -55,4 +55,11 @@ export const routes: Routes = [
         (m) => m.TicketsComponent
       ),
   },
+
+  {
+    path: 'movie/:id',
+    loadComponent: () => import('./pages/book-movie/book-movie.component').then(m => m.BookMovieComponent),
+    canActivate: [authGuard]
+  }
+  
 ];

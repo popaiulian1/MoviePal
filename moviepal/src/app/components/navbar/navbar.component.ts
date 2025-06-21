@@ -83,7 +83,7 @@ export class NavbarComponent {
   selectMovie(movie: featuredMovie) {
     this.searchTerm = '';
     this.searchResults = [];
-    this.router.navigate(['/movies', movie.id]);
+    this.router.navigate(['/movie', movie.id]);
   }
 
   onSearchClick() {

@@ -1,0 +1,74 @@
+<div class="book-movie-container">
+    <div class="left-column">
+        <div class="poster-container">
+            <img [src]="movie?.entry?.posterUrl" alt="Movie Poster" class="movie-poster">
+        </div>
+
+        <div class="seats-selector">
+            <label for="seats">Number of seats:</label>
+            <input
+                id="seats"
+                type="number"
+                min="1"
+                [value]="numberOfSeats"
+                (input)="onSeatsInput($event)"
+                class="tickets-input"
+                style="width: 60px; margin-bottom: 1rem;"
+            />
+        </div>
+
+        <div class="showtimes-container">
+            @for(showTime of movie?.entry?.showTimes; track showTime) {
+                <div class="showtime-card">
+                    <p class="showtime-time">{{ showTime }}</p>
+                    <button class="book-button" (click)="bookTicket(showTime)">Book Now</button>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="right-column">
+        <div class="trailer-container">
+            <button class="back-button" (click)="goBack()">Back</button>
+            <div class="trailer-video">
+                <iframe
+                    width="1000"
+                    height="515"
+                    [src]="embededUrl"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+
+        <div class="title-description-container">
+            <h1 class="movie-title">{{ movie?.entry?.title }}</h1>
+            <p class ="rating">IMDb Rating: {{movie?.entry?.rating}}</p>
+            <p class="movie-description">{{ movie?.entry?.description }}</p>
+        </div>
+    </div>
+
+    <div class = "info-container">
+        <div class="cinema-info-container">
+            <p class="cinema-info">Cinema: {{ movie?.cinema?.name }}</p>
+            <p class="cinema-info">Program: {{ movie?.cinema?.openingHours }}</p>
+            <p class="cinema-info">Address: {{ movie?.cinema?.location }}</p>
+            <p class="cinema-info">Phone: {{ movie?.cinema?.contactNumber }}</p>
+            <p class="cinema-info">Email: {{ movie?.cinema?.email }}</p>
+            <p class="cinema-info">Website: <a href="{{ movie?.cinema?.website }}" target="_blank">{{ movie?.cinema?.website }}</a></p>
+            
+        </div>
+        
+        <div class="movie-info-container">
+            <p class="movie-info">Director: {{ movie?.entry?.director }}</p>
+            <p class="movie-info">Genre: {{ movie?.entry?.genre }}</p>
+            <p class="movie-info">Release Date: {{ movie?.entry?.releaseDate }}</p>
+            <p class="movie-info">Runtime: {{ movie?.entry?.runtime }} </p>
+            <p class="movie-info">Language: {{ movie?.entry?.language }}</p>
+            <p class= movie-info>Cast: {{movie?.entry?.cast}}</p>
+        </div>
+    </div>
+    
+</div>
