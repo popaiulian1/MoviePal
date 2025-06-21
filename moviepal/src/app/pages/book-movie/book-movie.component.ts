@@ -36,6 +36,7 @@ export class BookMovieComponent implements OnInit {
     }
 
     this.loadMovie(movieIdFromURL);
+    window.scrollTo({top: 0, behavior: 'smooth'});
   }
 
   loadMovie(movieId: string) {
