@@ -1,0 +1,39 @@
+<div class="tickets-container">
+  <nz-table
+    [nzData]="tickets"
+    [nzFrontPagination]="true"
+    [nzPageSize]="5"
+    [nzLoading]="loading"
+    nzBordered
+    nzSize="middle"
+  >
+    <thead>
+      <tr>
+        <th>Ticket ID</th>
+        <th>Movie</th>
+        <th>Cinema</th>
+        <th>Showtime</th>
+        <th>Seats</th>
+        <th>Total Price</th>
+        <th>Booking Date</th>
+        <th>Status</th>
+        <th>Poster</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let t of tickets; trackBy: trackById">
+        <td>{{ t.id }}</td>
+        <td>{{ t.movieTitle }}</td>
+        <td>{{ t.cinemaName }}</td>
+        <td>{{ t.showtime }}</td>
+        <td>
+          <img
+            [src]="t.posterUrl"
+            alt="poster"
+            style="width: 60px; height: 85px"
+          />
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

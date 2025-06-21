@@ -95,6 +95,10 @@ export class AuthService {
     }
   }
 
+   public getCurrentUser(): User | null {
+    return this.currentUserSubject.value;
+  }
+
   private getUserFromToken(token: string): User | null {
     try {
       const payload = token.split('.')[1];
