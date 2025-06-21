@@ -4,6 +4,19 @@
             <img [src]="movie?.entry?.posterUrl" alt="Movie Poster" class="movie-poster">
         </div>
 
+        <div class="seats-selector">
+            <label for="seats">Number of seats:</label>
+            <input
+                id="seats"
+                type="number"
+                min="1"
+                [value]="numberOfSeats"
+                (input)="onSeatsInput($event)"
+                class="tickets-input"
+                style="width: 60px; margin-bottom: 1rem;"
+            />
+        </div>
+
         <div class="showtimes-container">
             @for(showTime of movie?.entry?.showTimes; track showTime) {
                 <div class="showtime-card">
@@ -32,10 +45,22 @@
 
         <div class="title-description-container">
             <h1 class="movie-title">{{ movie?.entry?.title }}</h1>
-            <p class ="rating">Rating: {{movie?.entry?.rating}}</p>
+            <p class ="rating">IMDb Rating: {{movie?.entry?.rating}}</p>
             <p class="movie-description">{{ movie?.entry?.description }}</p>
         </div>
+    </div>
 
+    <div class = "info-container">
+        <div class="cinema-info-container">
+            <p class="cinema-info">Cinema: {{ movie?.cinema?.name }}</p>
+            <p class="cinema-info">Program: {{ movie?.cinema?.openingHours }}</p>
+            <p class="cinema-info">Address: {{ movie?.cinema?.location }}</p>
+            <p class="cinema-info">Phone: {{ movie?.cinema?.contactNumber }}</p>
+            <p class="cinema-info">Email: {{ movie?.cinema?.email }}</p>
+            <p class="cinema-info">Website: <a href="{{ movie?.cinema?.website }}" target="_blank">{{ movie?.cinema?.website }}</a></p>
+            
+        </div>
+        
         <div class="movie-info-container">
             <p class="movie-info">Director: {{ movie?.entry?.director }}</p>
             <p class="movie-info">Genre: {{ movie?.entry?.genre }}</p>
@@ -45,4 +70,5 @@
             <p class= movie-info>Cast: {{movie?.entry?.cast}}</p>
         </div>
     </div>
+    
 </div>

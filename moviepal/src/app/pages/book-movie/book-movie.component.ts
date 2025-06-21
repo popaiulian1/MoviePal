@@ -17,6 +17,7 @@ import { Ticket } from '../../interfaces/ticket-interface';
 export class BookMovieComponent implements OnInit {
   movie: MovieDetailed | null = null;
   embededUrl: SafeResourceUrl | null = null;
+  numberOfSeats: number = 1;
 
   constructor(
     private movieService: MovieService,
@@ -68,6 +69,13 @@ export class BookMovieComponent implements OnInit {
     return match ? match[1] : null;
   }
 
+  onSeatsInput(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const value = input.value;
+    const seats = Math.max(1, Number(value));
+    this.numberOfSeats = seats;
+  }
+
   bookTicket(showTime: string) {
     try {
       if (!this.movie) {
@@ -92,8 +100,8 @@ export class BookMovieComponent implements OnInit {
             movieId: this.movie.entry.id,
             cinemaId: this.movie.cinema.id,
             showTime: showTime,
-            numberOfSeats: 1,
-            totalPrice: this.movie.entry.ticketPrice,
+            numberOfSeats: this.numberOfSeats,
+            totalPrice: Number(this.movie.entry.ticketPrice) * this.numberOfSeats,
             bookingDate: new Date().toISOString(),
             status: 'BOOKED'
           };
