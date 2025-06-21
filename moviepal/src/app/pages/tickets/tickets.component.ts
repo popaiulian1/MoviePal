@@ -56,6 +56,8 @@ export class TicketsComponent implements OnInit {
       console.error('No user logged in');
       return;
     }
+    console.log('Token:', this.authService.getToken());
+
 
     this.loading = true;
     this.ticketService.getTicketsByUser(currentUser.username).subscribe({
@@ -117,4 +119,6 @@ export class TicketsComponent implements OnInit {
   trackById(index: number, item: Ticket): string {
     return item._id ?? index.toString();
   }
-}
+ 
+
+} 
