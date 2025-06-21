@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@angular/common": "^19.2.14",
+    "ng-zorro-antd": "^19.3.1"
+  }
+}

@@ -5,14 +5,22 @@ import { catchError } from 'rxjs/operators';
 import { BASE_API_URL } from '../utils/api.url';
 
 export interface Ticket {
-  id?: string;
+  id?: string; // mapped from _id
+  _id?: string;
   userId: string;
   movieId: string;
-  movieTitle: string;
-  cinemaName: string;
-  showtime: string;
-  posterUrl: string;
+  cinemaId: string;
+  showTime: string;
+  numberOfSeats: number;
+  totalPrice: number;
+  bookingDate: string;
+  status: string;
+  // If your backend doesn't send these, remove them:
+  movieTitle?: string;
+  cinemaName?: string;
+  posterUrl?: string;
 }
+
 
 @Injectable({
   providedIn: 'root'

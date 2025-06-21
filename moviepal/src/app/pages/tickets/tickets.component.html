@@ -1,11 +1,11 @@
-<div class="tickets-container">
+<div class="tickets-container dark-mode">
   <nz-table
     [nzData]="tickets"
     [nzFrontPagination]="true"
     [nzPageSize]="5"
     [nzLoading]="loading"
-    nzBordered
     nzSize="middle"
+    class="dark-table"
   >
     <thead>
       <tr>
@@ -18,14 +18,19 @@
         <th>Booking Date</th>
         <th>Status</th>
         <th>Poster</th>
+        <th>Edit</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let t of tickets; trackBy: trackById">
-        <td>{{ t.id }}</td>
-        <td>{{ t.movieTitle }}</td>
-        <td>{{ t.cinemaName }}</td>
-        <td>{{ t.showtime }}</td>
+        <td>{{ t._id }}</td>
+        <td>{{ t.movieId }}</td>
+        <td>{{ t.cinemaId }}</td>
+        <td>{{ t.showTime }}</td>
+        <td>{{ t.numberOfSeats }}</td>
+        <td>{{ t.totalPrice | currency }}</td>
+        <td>{{ t.bookingDate | date : "medium" }}</td>
+        <td>{{ t.status }}</td>
         <td>
           <img
             [src]="t.posterUrl"
@@ -33,7 +38,44 @@
             style="width: 60px; height: 85px"
           />
         </td>
+        <td>
+          <button nz-button nzType="link" (click)="openEditModal(t)">
+            <i nz-icon nzType="edit"></i>
+          </button>
+        </td>
       </tr>
     </tbody>
   </nz-table>
+
+  <!-- Edit Modal -->
+  <nz-modal
+    [(nzVisible)]="isEditModalVisible"
+    [nzTitle]="'Edit Ticket'"
+    (nzOnCancel)="cancelEdit()"
+    (nzOnOk)="submitEdit()"
+    [nzOkText]="'Save'"
+    [nzCentered]="true"
+    [nzMaskClosable]="false"
+  >
+    <ng-container *nzModalContent>
+      <form nz-form [formGroup]="editForm" nzLayout="vertical">
+        <nz-form-item>
+          <nz-form-label>Status</nz-form-label>
+          <nz-form-control>
+            <nz-select formControlName="status">
+              <nz-option nzValue="BOOKED" nzLabel="BOOKED"></nz-option>
+              <nz-option nzValue="CANCELLED" nzLabel="CANCELLED"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label>Seats</nz-form-label>
+          <nz-form-control>
+            <input nz-input type="number" formControlName="numberOfSeats" />
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </ng-container>
+  </nz-modal>
 </div>
