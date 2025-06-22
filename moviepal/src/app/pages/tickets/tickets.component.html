@@ -4,7 +4,6 @@
     [nzFrontPagination]="true"
     [nzPageSize]="5"
     [nzLoading]="loading"
-    [nzNoResult]="noDataTemplate"
   >
     <thead>
       <tr>
@@ -37,25 +36,6 @@
       </tr>
     </tbody>
   </nz-table>
-
-  <ng-template #noDataTemplate>
-    <div class="no-data-container">
-      <ng-template #emptyContent>
-        <span *ngIf="error">{{ error }}</span>
-        <span *ngIf="!error">No tickets found</span>
-        <div class="action-container">
-          <button nz-button nzType="primary" (click)="retry()">
-            <i nz-icon nzType="reload"></i>
-            Try Again
-          </button>
-          <button nz-button nzType="default" routerLink="/movies">
-            <i nz-icon nzType="shopping"></i>
-            Book Movies
-          </button>
-        </div>
-      </ng-template>
-    </div>
-  </ng-template>
 
   <!-- Edit Modal -->
   <nz-modal

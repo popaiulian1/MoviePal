@@ -56,4 +56,14 @@ export class TicketService {
       })
     );
   }
+
+  updateTicket(ticketId: string, ticketData: Partial<Ticket>): Observable<Ticket | null> {
+    console.log('Updating ticket with ID:', ticketId, 'Data:', ticketData);
+    return this.http.put<Ticket>(`${BASE_API_URL}/tickets/${ticketId}`, ticketData).pipe(
+      catchError(error => {
+        console.error('Error updating ticket:', error);
+        return of(null);
+      })
+    );
+  }
 }

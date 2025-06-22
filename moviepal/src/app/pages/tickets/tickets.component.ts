@@ -100,20 +100,34 @@ export class TicketsComponent implements OnInit {
   submitEdit(): void {
     if (!this.currentTicket) return;
 
-    const updatedTicket = {
-      ...this.currentTicket,
-      ...this.editForm.value
-    };
+    const ticketId = this.currentTicket.id;
+    const updatedData = this.editForm.value;
 
-    // Here you’d call an update method on TicketService (you may need to create this)
-    console.log('Updated ticket:', updatedTicket);
-
-    // Simulate update (replace with real service call)
-    this.tickets = this.tickets.map(t =>
-      t.ticket.id === updatedTicket.id ? updatedTicket : t
-    );
-
-    this.isEditModalVisible = false;
+    this.ticketService.updateTicket(ticketId, updatedData).subscribe({
+      next: (updatedTicket) => {
+        if (updatedTicket) {
+          this.tickets = this.tickets.map(t => {
+            if (t.ticket.id === ticketId) {
+              return {
+                ...t,
+                ticket: {
+                  ...t.ticket,
+                  status: updatedData.status,
+                  numberOfSeats: updatedData.numberOfSeats
+                }
+              };
+            }
+            return t;
+          });
+        }
+        this.isEditModalVisible = false;
+        this.currentTicket = null;
+      },
+      error: (err) => {
+        console.error('Failed to update ticket:', err);
+        this.isEditModalVisible = false;
+      }
+    });
   }
 
   deleteTicket(ticketId: string): void {
