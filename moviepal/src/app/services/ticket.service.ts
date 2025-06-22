@@ -1,25 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { BASE_API_URL } from '../utils/api.url';
-
-export interface Ticket {
-  id?: string; // mapped from _id
-  _id?: string;
-  userId: string;
-  movieId: string;
-  cinemaId: string;
-  showTime: string;
-  numberOfSeats: number;
-  totalPrice: number;
-  bookingDate: string;
-  status: string;
-  // If your backend doesn't send these, remove them:
-  movieTitle?: string;
-  cinemaName?: string;
-  posterUrl?: string;
-}
+import { TicketResponse } from '../interfaces/ticket-response.interface';
+import { Ticket } from '../interfaces/ticket.interface';
 
 
 @Injectable({
@@ -38,15 +23,29 @@ export class TicketService {
     );
   }
 
-  getTicketsByUser(userId: string): Observable<Ticket[]> {
-    console.log('Fetching tickets for user:', userId);
-    return this.http.get<Ticket[]>(`${BASE_API_URL}/tickets/user/${userId}`).pipe(
+  getTickets(): Observable<TicketResponse[]> {
+    console.log('Fetching all tickets');
+    return this.http.get<TicketResponse[]>(`${BASE_API_URL}/tickets`, {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${window.localStorage.getItem('token') || window.sessionStorage.getItem('token')}`
+      })
+    }).pipe(
       catchError(error => {
         console.error('Error fetching tickets:', error);
-        return of([]);
+        return throwError(() => error);
       })
     );
   }
+
+  // getTicketsByUser(userId: string): Observable<Ticket[]> {
+  //   console.log('Fetching tickets for user:', userId);
+  //   return this.http.get<Ticket[]>(`${BASE_API_URL}/tickets/user/${userId}`).pipe(
+  //     catchError(error => {
+  //       console.error('Error fetching tickets:', error);
+  //       return of([]);
+  //     })
+  //   );
+  // }
 
   deleteTicket(ticketId: string): Observable<void> {
     console.log('Deleting ticket with ID:', ticketId);

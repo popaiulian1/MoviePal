@@ -4,7 +4,7 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { MovieService } from '../../services/movie.service';
 import { MovieDetailed } from '../../interfaces/movie-detailed.interface';
 import { Router } from '@angular/router';
-import { Ticket } from '../../interfaces/ticket-interface';
+import { Ticket } from '../../interfaces/ticket.interface';
 import { AuthService } from '../../services/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BASE_API_URL } from '../../utils/api.url';

@@ -6,7 +6,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { AuthService } from '../../services/auth.service';
 import { BASE_API_URL } from '../../utils/api.url';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Ticket } from '../../interfaces/ticket-interface';
+import { Ticket } from '../../interfaces/ticket.interface';
 
 @Component({
   selector: 'app-book-movie',
