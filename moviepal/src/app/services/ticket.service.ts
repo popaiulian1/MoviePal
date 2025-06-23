@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { BASE_API_URL } from '../utils/api.url';
 import { TicketResponse } from '../interfaces/ticket-response.interface';
 import { Ticket } from '../interfaces/ticket.interface';
@@ -17,7 +17,11 @@ export class TicketService {
 
   bookTicket(ticket: Ticket): Observable<Ticket | null> {
     console.log('Booking ticket:', ticket);
-    return this.http.post<Ticket>(`${BASE_API_URL}/tickets`, ticket).pipe(
+    return this.http.post<Ticket>(`${BASE_API_URL}/tickets`, ticket, {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${window.localStorage.getItem('token') || window.sessionStorage.getItem('token')}`
+      })
+    }).pipe(
       catchError(error => {
         console.error('Error booking ticket:', error);
         return of(null);
@@ -84,11 +88,25 @@ export class TicketService {
 }
 
 getMovies(): Observable<featuredMovie[]> {
-  return this.http.get<featuredMovie[]>(`${BASE_API_URL}/movies`);
+  const token = window.localStorage.getItem('token') || window.sessionStorage.getItem('token') || '';
+  return this.http.get<any>(`${BASE_API_URL}/movies?page=${0}&size=${35}`, {
+    headers: new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    })
+  }).pipe(
+    map(response => response.content || []) // Extract the content array
+  );
 }
 
 getCinemas(): Observable<Cinema[]> {
-  return this.http.get<Cinema[]>(`${BASE_API_URL}/cinemas`);
+  const token = window.localStorage.getItem('token') || window.sessionStorage.getItem('token') || '';
+  return this.http.get<any>(`${BASE_API_URL}/cinemas`, {
+    headers: new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    })
+  }).pipe(
+    map(response => response.content || []) // Extract the content array
+  );
 }
 
 

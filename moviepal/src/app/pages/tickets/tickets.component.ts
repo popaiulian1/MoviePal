@@ -3,7 +3,7 @@ import { TicketService } from '../../services/ticket.service';
 import { Ticket } from '../../interfaces/ticket.interface';
 import { TicketResponse } from '../../interfaces/ticket-response.interface';
 import { AuthService } from '../../services/auth.service';
-import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzTableModule, NzTableSortFn, NzTableSortOrder } from 'ng-zorro-antd/table';
 import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
@@ -21,6 +21,17 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { Cinema } from '../../interfaces/cinema.interface';
 import { featuredMovie } from '../../interfaces/featured-movie.interface';
+import { MovieService } from '../../services/movie.service';
+
+// Define the column interface
+interface ColumnItem {
+  title: string;
+  compare?: (a: TicketResponse, b: TicketResponse) => number;
+  priority?: number;
+  sortFn?: NzTableSortFn<TicketResponse> | null;
+  sortPriority?: number;
+  sortDirections?: NzTableSortOrder[];
+}
 
 @Component({
   selector: 'app-tickets',
@@ -49,10 +60,56 @@ export class TicketsComponent implements OnInit {
   isEditModalVisible = false;
   editForm!: FormGroup;
   currentTicket!: Ticket | null;
+
   movies: featuredMovie[] = [];
   cinemas: Cinema[] = [];
+  allCinemas: Cinema[] = [];
+
+  availableShowtimes: string[] = [];
 
   public error: string | null = null;
+
+  sortName: string | null = null;
+  sortValue: string | null = null;
+
+  searchText = '';
+  filteredTickets: TicketResponse[] = [];
+  
+  columns: ColumnItem[] = [
+    {
+      title: 'Ticket ID',
+      sortFn: (a: TicketResponse, b: TicketResponse) => a.ticket.id.localeCompare(b.ticket.id)
+    },
+    {
+      title: 'Movie',
+      sortFn: (a: TicketResponse, b: TicketResponse) => a.movie.title.localeCompare(b.movie.title)
+    },
+    {
+      title: 'Cinema',
+      sortFn: (a: TicketResponse, b: TicketResponse) => a.cinema.name.localeCompare(b.cinema.name)
+    },
+    {
+      title: 'Showtime',
+      sortFn: (a: TicketResponse, b: TicketResponse) => a.ticket.showTime.localeCompare(b.ticket.showTime)
+    },
+    {
+      title: 'Seats',
+      sortFn: (a: TicketResponse, b: TicketResponse) => a.ticket.numberOfSeats - b.ticket.numberOfSeats
+    },
+    {
+      title: 'Total Price',
+      sortFn: (a: TicketResponse, b: TicketResponse) => a.ticket.totalPrice - b.ticket.totalPrice
+    },
+    {
+      title: 'Booking Date',
+      sortFn: (a: TicketResponse, b: TicketResponse) => 
+        new Date(a.ticket.bookingDate).getTime() - new Date(b.ticket.bookingDate).getTime()
+    },
+    {
+      title: 'Status',
+      sortFn: (a: TicketResponse, b: TicketResponse) => a.ticket.status.localeCompare(b.ticket.status)
+    }
+  ];
 
   constructor(
     private ticketService: TicketService,
@@ -62,19 +119,25 @@ export class TicketsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadTickets();
-    this.isEditModalVisible = true;
+    
     this.editForm = this.fb.group({
       status: [''],
       numberOfSeats: [''],
     });
 
     this.createForm = this.fb.group({
-    movieId: [null, Validators.required],
-    cinemaId: [null, Validators.required],
-    showTime: ['', Validators.required],
-    numberOfSeats: [1, [Validators.required, Validators.min(1)]],
-    status: ['BOOKED', Validators.required]
-  });
+      movieId: [null, Validators.required],
+      cinemaId: [null, Validators.required],
+      showTime: ['', Validators.required],
+      numberOfSeats: [1, [Validators.required, Validators.min(1)]],
+      status: ['BOOKED', Validators.required]
+    });
+    
+    this.createForm.get('movieId')?.valueChanges.subscribe(movieId => {
+      this.onMovieChange(movieId);
+    });
+
+    this.filteredTickets = [...this.tickets];
   }
 
   loadTickets(): void {
@@ -89,6 +152,7 @@ export class TicketsComponent implements OnInit {
     this.ticketService.getTickets().subscribe({
       next: (data) => {
         this.tickets = data;
+        this.filteredTickets = [...data]; // Initialize filtered tickets
         this.loading = false;
       },
       error: (err) => {
@@ -126,8 +190,8 @@ export class TicketsComponent implements OnInit {
     const ticketId = this.currentTicket.id;
     const updatedData = this.editForm.value;
     const updatedTicket: Ticket = {
-      ...this.currentTicket, // retain all original fields
-      ...updatedData, // override with any new form values
+      ...this.currentTicket,
+      ...updatedData, 
     };
 
     this.ticketService.updateTicket(updatedTicket.id, updatedTicket).subscribe({
@@ -163,6 +227,10 @@ export class TicketsComponent implements OnInit {
         this.tickets = this.tickets.filter(
           (ticket) => ticket.ticket.id !== ticketId
         );
+        console.log('Ticket deleted successfully');
+        this.isEditModalVisible = false;
+        // fallback pt ca ticketul sters nu a disparut in unele cazuir (?!?)
+        this.retry();
       },
       error: (err) => {
         console.error('Failed to delete ticket', err);
@@ -182,10 +250,60 @@ export class TicketsComponent implements OnInit {
   openCreateModal(): void {
     this.createForm.reset({
       status: 'BOOKED',
-      numberOfSeats: 1,
-      showTime: '',
+      numberOfSeats: 1
     });
+    
+    this.ticketService.getMovies().subscribe({
+      next: (data) => {
+        this.movies = data;
+        console.log('Loaded movies:', this.movies);
+      },
+      error: (err) => console.error('Error loading movies:', err)
+    });
+    
+    this.ticketService.getCinemas().subscribe({
+      next: (data) => {
+        this.allCinemas = data;
+        this.cinemas = [...data];
+        console.log('Loaded cinemas:', this.cinemas);
+      },
+      error: (err) => console.error('Error loading cinemas:', err)
+    });
+    
     this.isCreateModalVisible = true;
+  }
+
+  onMovieChange(movieId: string): void {
+    if (!movieId) {
+      this.cinemas = [...this.allCinemas];
+      this.availableShowtimes = [];
+      return;
+    }
+    
+    const selectedMovie = this.movies.find(movie => movie.id === movieId);
+    
+    if (selectedMovie) {
+      if (selectedMovie.cinemaId) {
+        this.cinemas = this.allCinemas.filter(cinema => 
+          cinema.id === selectedMovie.cinemaId
+        );
+        
+        if (this.cinemas.length === 1) {
+          this.createForm.patchValue({
+            cinemaId: this.cinemas[0].id
+          });
+        }
+      }
+
+      this.availableShowtimes = selectedMovie.showTimes || [];
+      console.log('Available showtimes:', this.availableShowtimes);
+
+      if (this.availableShowtimes.length === 1) {
+        this.createForm.patchValue({
+          showTime: this.availableShowtimes[0]
+        });
+      }
+    }
   }
 
   cancelCreate(): void {
@@ -203,13 +321,13 @@ export class TicketsComponent implements OnInit {
     }
 
     const newTicket: Ticket = {
-      id: '', // backend usually assigns ID
+      id: Math.random().toString(36).substring(2, 15),
       userId: currentUser.id,
-      movieId: 'sample-movie-id', // replace or bind from a dropdown
-      cinemaId: 'sample-cinema-id', // same
+      movieId: formData.movieId,
+      cinemaId: formData.cinemaId,
       showTime: formData.showTime,
       numberOfSeats: formData.numberOfSeats,
-      totalPrice: formData.numberOfSeats * 10, // or calculate dynamically
+      totalPrice: formData.numberOfSeats * 7.99,
       bookingDate: new Date().toISOString(),
       status: formData.status,
     };
@@ -217,7 +335,7 @@ export class TicketsComponent implements OnInit {
     this.ticketService.bookTicket(newTicket).subscribe({
       next: (createdTicket) => {
         if (createdTicket) {
-          this.loadTickets(); // refresh list
+          this.loadTickets(); 
         }
         this.isCreateModalVisible = false;
       },
@@ -225,5 +343,25 @@ export class TicketsComponent implements OnInit {
         console.error('Failed to create ticket:', err);
       },
     });
+  }
+
+  onSearch(): void {
+    if (!this.searchText) {
+      this.filteredTickets = [...this.tickets];
+      return;
+    }
+    
+    const searchTerm = this.searchText.toLowerCase().trim();
+    this.filteredTickets = this.tickets.filter(ticket => 
+      ticket.ticket.id.toLowerCase().includes(searchTerm) ||
+      ticket.movie.title.toLowerCase().includes(searchTerm) ||
+      ticket.cinema.name.toLowerCase().includes(searchTerm) ||
+      ticket.ticket.showTime.toLowerCase().includes(searchTerm) ||
+      ticket.ticket.status.toLowerCase().includes(searchTerm)
+    );
+  }
+
+  currentPageDataChange(data: readonly TicketResponse[]): void {
+    console.log('Current page data:', data);
   }
 }

@@ -1,64 +1,81 @@
 <div class="tickets-container">
-  <!-- Add button -->
-  <button
-    nz-button
-    nzType="primary"
-    class="add-ticket-btn"
-    (click)="openCreateModal()"
-  >
-    <i nz-icon nzType="plus"></i> Add Ticket
-  </button>
+  <div class="table-operations">
+    <!-- Add button -->
+    <button
+      nz-button
+      nzType="primary"
+      class="add-ticket-btn"
+      (click)="openCreateModal()"
+    >
+      <i nz-icon nzType="plus"></i> Add Ticket
+    </button>
+    
+    <!-- Add search input -->
+    <div class="search-box">
+      <input 
+        nz-input 
+        placeholder="Search tickets..." 
+        [(ngModel)]="searchText" 
+        (ngModelChange)="onSearch()"
+      />
+      <i nz-icon nzType="search"></i>
+    </div>
+  </div>
 
   <nz-table
-    [nzData]="tickets"
+    [nzData]="filteredTickets"
     [nzFrontPagination]="true"
     [nzPageSize]="5"
     [nzLoading]="loading"
+    (nzCurrentPageDataChange)="currentPageDataChange($event)"
   >
+    <ng-template #totalTemplate let-total>Total {{ total }} items</ng-template>
     <thead>
       <tr>
-        <th>Ticket ID</th>
-        <th>Movie</th>
-        <th>Cinema</th>
-        <th>Showtime</th>
-        <th>Seats</th>
-        <th>Total Price</th>
-        <th>Booking Date</th>
-        <th>Status</th>
+        <th 
+          *ngFor="let column of columns" 
+          [nzSortFn]="column.sortFn ?? null"
+          [nzSortPriority]="column.sortPriority ?? false"
+          [nzSortDirections]="column.sortDirections || ['ascend', 'descend', null]"
+        >
+          {{ column.title }}
+        </th>
         <th>Edit</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let t of tickets; trackBy: trackById">
-        <td>{{ t.ticket.id }}</td>
-        <td>{{ t.movie.title }}</td>
-        <td>{{ t.cinema.name }}</td>
-        <td>{{ t.ticket.showTime }}</td>
-        <td>{{ t.ticket.numberOfSeats }}</td>
-        <td>{{ t.ticket.totalPrice | currency }}</td>
-        <td>{{ t.ticket.bookingDate | date : "medium" }}</td>
-        <td>
-          <nz-tag [nzColor]="t.ticket.status === 'BOOKED' ? 'green' : 'red'">{{
-            t.ticket.status | uppercase
-          }}</nz-tag>
-        </td>
-        <td>
-          <button nz-button nzType="link" (click)="openEditModal(t.ticket)">
-            <i nz-icon nzType="edit"></i>
-          </button>
-        </td>
-      </tr>
+      @for(ticket of filteredTickets; track ticket.ticket.id) {
+        <tr>
+          <td>{{ ticket.ticket.id }}</td>
+          <td>{{ ticket.movie.title }}</td>
+          <td>{{ ticket.cinema.name }}</td>
+          <td>{{ ticket.ticket.showTime }}</td>
+          <td>{{ ticket.ticket.numberOfSeats }}</td>
+          <td>{{ ticket.ticket.totalPrice | currency }}</td>
+          <td>{{ ticket.ticket.bookingDate | date: 'medium' }}</td>
+          <td>
+            <nz-tag [nzColor]="ticket.ticket.status === 'BOOKED' ? 'green' : 'red'">
+              {{ ticket.ticket.status | uppercase }}
+            </nz-tag>
+          </td>
+          <td>
+            <button nz-button nzType="link" (click)="openEditModal(ticket.ticket)">
+              <i nz-icon nzType="edit"></i>
+            </button>
+          </td>
+        </tr>
+      }
     </tbody>
   </nz-table>
 
   <!-- Edit Modal -->
   <nz-modal
-    [(nzVisible)]="isEditModalVisible"
-    [nzTitle]="'Edit Ticket'"
-    (nzOnCancel)="cancelEdit()"
-    [nzCentered]="true"
-    [nzMaskClosable]="false"
-    [nzFooter]="modalFooter"
+  [(nzVisible)]="isEditModalVisible"
+  [nzTitle]="'Edit Ticket'"
+  (nzOnCancel)="cancelEdit()"
+  [nzCentered]="true"
+  [nzMaskClosable]="false"
+  [nzFooter]="modalFooter"
   >
     <ng-container *nzModalContent>
       <form nz-form [formGroup]="editForm" nzLayout="vertical">
@@ -68,6 +85,7 @@
             <nz-select formControlName="status">
               <nz-option nzValue="BOOKED" nzLabel="BOOKED"></nz-option>
               <nz-option nzValue="CANCELLED" nzLabel="CANCELLED"></nz-option>
+              <nz-option nzValue="PAID" nzLabel="PAID"></nz-option>
             </nz-select>
           </nz-form-control>
         </nz-form-item>
@@ -105,7 +123,10 @@
         <nz-form-item>
           <nz-form-label>Movie</nz-form-label>
           <nz-form-control>
-            <nz-select formControlName="movieId" nzPlaceHolder="Select a movie">
+            <nz-select 
+              formControlName="movieId" 
+              nzPlaceHolder="Select a movie"
+              (ngModelChange)="onMovieChange($event)">
               <nz-option
                 *ngFor="let movie of movies"
                 [nzValue]="movie.id"
@@ -134,7 +155,16 @@
         <nz-form-item>
           <nz-form-label>Show Time</nz-form-label>
           <nz-form-control>
-            <input nz-input type="datetime-local" formControlName="showTime" />
+            <nz-select
+              formControlName="showTime"
+              nzPlaceHolder="Select a showtime"
+            >
+              <nz-option
+                *ngFor="let showtime of availableShowtimes"
+                [nzValue]="showtime"
+                [nzLabel]="showtime"
+              ></nz-option>
+            </nz-select>
           </nz-form-control>
         </nz-form-item>
 
@@ -155,11 +185,11 @@
           <nz-form-control>
             <nz-select formControlName="status">
               <nz-option nzValue="BOOKED" nzLabel="BOOKED"></nz-option>
-              <nz-option nzValue="CANCELLED" nzLabel="CANCELLED"></nz-option>
             </nz-select>
           </nz-form-control>
         </nz-form-item>
       </form>
     </ng-container>
   </nz-modal>
+  
 </div>

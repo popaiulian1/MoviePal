@@ -32,23 +32,19 @@ export class MovieService {
         return this.http.get<any>(`${BASE_API_URL}/movies/search?query=${encodeURIComponent(searchTerm)}`)
             .pipe(
                 map(response => {
-                    // Handle both potential response formats
                     if (Array.isArray(response)) {
-                        // API returned an array directly
                         console.log('Search response is an array:', response);
                         return { content: response };
                     } else if (response && response.content) {
-                        // API returned the expected page format
                         return response;
                     } else {
-                        // Unexpected format, return empty content
                         console.warn('Unexpected search response format:', response);
                         return { content: [] };
                     }
                 }),
                 catchError(error => {
                   console.error('Error fetching movies by search term:', error);
-                  return of({ content: [] }); // Return empty content on error
+                  return of({ content: [] });
                 })
             );
     }
