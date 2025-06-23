@@ -11,6 +11,7 @@ interface LoginResponse {
 
 interface User {
   username: string;
+  id: string;
 }
 
 @Injectable({
@@ -105,6 +106,7 @@ export class AuthService {
       const decodedPayload = JSON.parse(atob(payload));
 
       return {
+        id: decodedPayload.id || decodedPayload.userId || '',
         username: decodedPayload.sub || decodedPayload.username || 'Unknown User'
       }
     } catch (error) {

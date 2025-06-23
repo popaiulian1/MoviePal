@@ -74,7 +74,6 @@ nz-tag {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
   }
 
-  // 🎯 Style the modal title bar
   ::ng-deep .ant-modal-header {
     background-color: #1a1a1a;
     border-bottom: 1px solid #333;
@@ -128,4 +127,18 @@ nz-tag {
     background-color: #2a2a2a;
     color: #ffffff;
   }
-
+  
+  .tickets-container .add-ticket-btn {
+  margin-bottom: 20px;      
+  border-radius: 12px;      
+  background-color: #2a2a2a;
+  border: 1px solid #434343;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 6px 16px;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  text-align: center;
+}

@@ -1,4 +1,14 @@
 <div class="tickets-container">
+  <!-- Add button -->
+  <button
+    nz-button
+    nzType="primary"
+    class="add-ticket-btn"
+    (click)="openCreateModal()"
+  >
+    <i nz-icon nzType="plus"></i> Add Ticket
+  </button>
+
   <nz-table
     [nzData]="tickets"
     [nzFrontPagination]="true"
@@ -25,9 +35,13 @@
         <td>{{ t.cinema.name }}</td>
         <td>{{ t.ticket.showTime }}</td>
         <td>{{ t.ticket.numberOfSeats }}</td>
-        <td>{{ t.ticket.totalPrice| currency }}</td>
-        <td>{{ t.ticket.bookingDate| date : "medium" }}</td>
-        <td><nz-tag [nzColor]="t.ticket.status === 'BOOKED' ? 'green' : 'red'">{{ t.ticket.status | uppercase }}</nz-tag></td>
+        <td>{{ t.ticket.totalPrice | currency }}</td>
+        <td>{{ t.ticket.bookingDate | date : "medium" }}</td>
+        <td>
+          <nz-tag [nzColor]="t.ticket.status === 'BOOKED' ? 'green' : 'red'">{{
+            t.ticket.status | uppercase
+          }}</nz-tag>
+        </td>
         <td>
           <button nz-button nzType="link" (click)="openEditModal(t.ticket)">
             <i nz-icon nzType="edit"></i>
@@ -42,11 +56,9 @@
     [(nzVisible)]="isEditModalVisible"
     [nzTitle]="'Edit Ticket'"
     (nzOnCancel)="cancelEdit()"
-    (nzOnOk)="submitEdit()"
-    [nzOkText]="'Save'"
-    [nzCancelText]="'Cancel'"
     [nzCentered]="true"
     [nzMaskClosable]="false"
+    [nzFooter]="modalFooter"
   >
     <ng-container *nzModalContent>
       <form nz-form [formGroup]="editForm" nzLayout="vertical">
@@ -64,6 +76,87 @@
           <nz-form-label>Seats</nz-form-label>
           <nz-form-control>
             <input nz-input type="number" formControlName="numberOfSeats" />
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </ng-container>
+
+    <!-- Custom footer template -->
+    <ng-template #modalFooter>
+      <button nz-button nzType="default" (click)="cancelEdit()">Cancel</button>
+      <button nz-button nzType="primary" (click)="submitEdit()">Save</button>
+      <button nz-button nzType="default" (click)="deleteTicket(currentTicket?.id!)">Delete</button>
+    </ng-template>
+  </nz-modal>
+
+  <!-- Add modal -->
+  <nz-modal
+    [(nzVisible)]="isCreateModalVisible"
+    [nzTitle]="'Create Ticket'"
+    (nzOnCancel)="cancelCreate()"
+    (nzOnOk)="submitCreate()"
+    [nzOkText]="'Create'"
+    [nzCancelText]="'Cancel'"
+    [nzCentered]="true"
+    [nzMaskClosable]="false"
+  >
+    <ng-container *nzModalContent>
+      <form nz-form [formGroup]="createForm" nzLayout="vertical">
+        <nz-form-item>
+          <nz-form-label>Movie</nz-form-label>
+          <nz-form-control>
+            <nz-select formControlName="movieId" nzPlaceHolder="Select a movie">
+              <nz-option
+                *ngFor="let movie of movies"
+                [nzValue]="movie.id"
+                [nzLabel]="movie.title"
+              ></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label>Cinema</nz-form-label>
+          <nz-form-control>
+            <nz-select
+              formControlName="cinemaId"
+              nzPlaceHolder="Select a cinema"
+            >
+              <nz-option
+                *ngFor="let cinema of cinemas"
+                [nzValue]="cinema.id"
+                [nzLabel]="cinema.name"
+              ></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label>Show Time</nz-form-label>
+          <nz-form-control>
+            <input nz-input type="datetime-local" formControlName="showTime" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label>Seats</nz-form-label>
+          <nz-form-control [nzErrorTip]="'Must be at least 1 seat'">
+            <input
+              nz-input
+              type="number"
+              formControlName="numberOfSeats"
+              min="1"
+            />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label>Status</nz-form-label>
+          <nz-form-control>
+            <nz-select formControlName="status">
+              <nz-option nzValue="BOOKED" nzLabel="BOOKED"></nz-option>
+              <nz-option nzValue="CANCELLED" nzLabel="CANCELLED"></nz-option>
+            </nz-select>
           </nz-form-control>
         </nz-form-item>
       </form>
