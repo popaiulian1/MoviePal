@@ -50,6 +50,7 @@ export class TicketsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadTickets();
+    this.isEditModalVisible = true;
     this.editForm = this.fb.group({
       status: [''],
       numberOfSeats: ['']
@@ -84,8 +85,9 @@ export class TicketsComponent implements OnInit {
   }
 
   openEditModal(ticket: Ticket): void {
+    console.log('Editing ticket:', ticket); 
     this.currentTicket = ticket;
-    this.editForm.setValue({
+    this.editForm.patchValue({
       status: ticket.status,
       numberOfSeats: ticket.numberOfSeats
     });
@@ -102,8 +104,12 @@ export class TicketsComponent implements OnInit {
 
     const ticketId = this.currentTicket.id;
     const updatedData = this.editForm.value;
+     const updatedTicket: Ticket = {
+    ...this.currentTicket, // retain all original fields
+    ...updatedData          // override with any new form values
+  };
 
-    this.ticketService.updateTicket(ticketId, updatedData).subscribe({
+    this.ticketService.updateTicket(updatedTicket.id, updatedTicket).subscribe({
       next: (updatedTicket) => {
         if (updatedTicket) {
           this.tickets = this.tickets.map(t => {

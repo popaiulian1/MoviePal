@@ -58,12 +58,22 @@ export class TicketService {
   }
 
   updateTicket(ticketId: string, ticketData: Partial<Ticket>): Observable<Ticket | null> {
-    console.log('Updating ticket with ID:', ticketId, 'Data:', ticketData);
-    return this.http.put<Ticket>(`${BASE_API_URL}/tickets/${ticketId}`, ticketData).pipe(
-      catchError(error => {
-        console.error('Error updating ticket:', error);
-        return of(null);
-      })
-    );
-  }
+  console.log('Updating ticket with ID:', ticketId, 'Data:', ticketData);
+
+  const token = window.localStorage.getItem('token') || window.sessionStorage.getItem('token');
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}`,
+    'Content-Type': 'application/json'
+  });
+
+  return this.http.put<Ticket>(`${BASE_API_URL}/tickets/${ticketId}`, ticketData, { headers }).pipe(
+    catchError(error => {
+      console.error('Error updating ticket:', error);
+      return of(null);
+    })
+  );
 }
+
+}
+
+

@@ -66,3 +66,66 @@
 nz-tag {
   margin-right: 0;
 }
+
+::ng-deep .ant-modal-content {
+    background-color: #1f1f1f;
+    color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+  }
+
+  // 🎯 Style the modal title bar
+  ::ng-deep .ant-modal-header {
+    background-color: #1a1a1a;
+    border-bottom: 1px solid #333;
+    color: #ffffff;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+
+  ::ng-deep .ant-modal-title {
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  ::ng-deep .ant-modal-body {
+    background-color: #1f1f1f;
+    color: #ffffff;
+  }
+
+  ::ng-deep .ant-modal-footer .ant-btn {
+    background-color: #2a2a2a;
+    color: #ffffff;
+    border: 1px solid #434343;
+  }
+
+  ::ng-deep .ant-modal-footer .ant-btn:hover {
+    background-color: #3a3a3a;
+    border-color: #5a5a5a;
+  }
+  
+  ::ng-deep nz-form-item,
+  ::ng-deep .ant-form-item {
+    margin-bottom: 16px;
+  }
+
+  ::ng-deep .ant-form-item-label > label {
+    color: #ffffff;
+  }
+
+  ::ng-deep .ant-input,
+  ::ng-deep .ant-select-selector {
+    background-color: #2a2a2a !important;
+    color: #ffffff !important;
+    border-color: #434343 !important;
+  }
+
+  ::ng-deep .ant-select-arrow {
+    color: #ffffff;
+  }
+
+  ::ng-deep .ant-input-number {
+    background-color: #2a2a2a;
+    color: #ffffff;
+  }
+
