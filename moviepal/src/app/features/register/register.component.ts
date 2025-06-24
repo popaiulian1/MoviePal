@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { passwordStrengthValidator, passwordsMatchValidator } from '../../utils/password.validator';
-import { PasswordStrengthPipe } from '../../utils/password-strength.pipe';
+import { passwordStrengthValidator, passwordsMatchValidator } from '../../core/utils/password.validator';
+import { PasswordStrengthPipe } from '../../core/utils/password-strength.pipe';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../core/services/auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({

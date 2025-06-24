@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { featuredMovie } from '../../interfaces/featured-movie.interface';
+import { featuredMovie } from '../interfaces/featured-movie.interface';
 import { CommonModule } from '@angular/common';
-import { MovieResponse } from '../../interfaces/movie-response.interface';
+import { MovieResponse } from '../interfaces/movie-response.interface';
 import { NzIconModule } from 'ng-zorro-antd/icon';
-import { MovieService } from '../../services/movie.service';
+import { MovieService } from '../services/movie.service';
 import { RouterLink } from '@angular/router';
 
 interface MovieWithRotation extends featuredMovie {

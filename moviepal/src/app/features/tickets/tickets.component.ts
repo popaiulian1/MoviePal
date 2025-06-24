@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { TicketService } from '../../services/ticket.service';
-import { Ticket } from '../../interfaces/ticket.interface';
-import { TicketResponse } from '../../interfaces/ticket-response.interface';
-import { AuthService } from '../../services/auth.service';
+import { TicketService } from '../../core/services/ticket.service';
+import { Ticket } from '../../core/interfaces/ticket.interface';
+import { TicketResponse } from '../../core/interfaces/ticket-response.interface';
+import { AuthService } from '../../core/services/auth.service';
 import { NzTableModule, NzTableSortFn, NzTableSortOrder } from 'ng-zorro-antd/table';
 import { CommonModule } from '@angular/common';
 import {
@@ -19,9 +19,9 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzTagModule } from 'ng-zorro-antd/tag';
-import { Cinema } from '../../interfaces/cinema.interface';
-import { featuredMovie } from '../../interfaces/featured-movie.interface';
-import { MovieService } from '../../services/movie.service';
+import { Cinema } from '../../core/interfaces/cinema.interface';
+import { featuredMovie } from '../../core/interfaces/featured-movie.interface';
+import { MovieService } from '../../core/services/movie.service';
 
 // Define the column interface
 interface ColumnItem {

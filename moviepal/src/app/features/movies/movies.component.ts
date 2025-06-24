@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MovieService } from '../../services/movie.service';
-import { featuredMovie } from '../../interfaces/featured-movie.interface';
-import { MovieDetailed } from '../../interfaces/movie-detailed.interface';
-import { MovieResponse } from '../../interfaces/movie-response.interface';
+import { MovieService } from '../../core/services/movie.service';
+import { featuredMovie } from '../../core/interfaces/featured-movie.interface';
+import { MovieDetailed } from '../../core/interfaces/movie-detailed.interface';
+import { MovieResponse } from '../../core/interfaces/movie-response.interface';
 import { MatDialog } from '@angular/material/dialog';
-import { MovieDetailDialogComponent } from '../../components/movie-detail-dialog/movie-detail-dialog.component';
+import { MovieDetailDialogComponent } from '../../core/movie-detail-dialog/movie-detail-dialog.component';
 import { Router } from '@angular/router';
 
 @Component({

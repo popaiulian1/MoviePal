@@ -4,11 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NzIconModule } from 'ng-zorro-antd/icon';
-import { featuredMovie } from '../../interfaces/featured-movie.interface';
+import { featuredMovie } from '../interfaces/featured-movie.interface';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { MovieService } from '../../services/movie.service';
-import { AuthService } from '../../services/auth.service';
+import { MovieService } from '../services/movie.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-navbar',

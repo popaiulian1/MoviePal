@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
-import { MovieService } from '../../services/movie.service';
-import { MovieDetailed } from '../../interfaces/movie-detailed.interface';
+import { MovieService } from '../../core/services/movie.service';
+import { MovieDetailed } from '../../core/interfaces/movie-detailed.interface';
 import { Router } from '@angular/router';
-import { Ticket } from '../../interfaces/ticket.interface';
-import { AuthService } from '../../services/auth.service';
+import { Ticket } from '../../core/interfaces/ticket.interface';
+import { AuthService } from '../../core/services/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BASE_API_URL } from '../../utils/api.url';
+import { BASE_API_URL } from '../../core/utils/api.url';
 
 @Component({
   selector: 'app-schedule',

@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MovieDetailed } from '../../interfaces/movie-detailed.interface';
+import { MovieDetailed } from '../interfaces/movie-detailed.interface';
 
 @Component({
   selector: 'app-movie-detail-dialog',

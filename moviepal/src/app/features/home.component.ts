@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MovieResponse } from '../interfaces/movie-response.interface';
-import { featuredMovie } from '../interfaces/featured-movie.interface';
+import { MovieResponse } from '../core/interfaces/movie-response.interface';
+import { featuredMovie } from '../core/interfaces/featured-movie.interface';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { NzIconModule } from 'ng-zorro-antd/icon';
-import { MovieCollageComponent } from "../components/movie-carousel/movie-collage.component";
-import { AuthService } from '../services/auth.service';
+import { MovieCollageComponent } from "../core/movie-carousel/movie-collage.component";
+import { AuthService } from '../core/services/auth.service';
 
 @Component({
   selector: 'app-home',

@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { authGuard } from './utils/auth.guard';
+import { authGuard } from './core/utils/auth.guard';
 
 export const routes: Routes = [
   {
@@ -11,13 +11,13 @@ export const routes: Routes = [
   {
     path: 'home',
     loadComponent: () =>
-      import('./pages/home.component').then((m) => m.HomeComponent),
+      import('./features/home.component').then((m) => m.HomeComponent),
     canActivate: [authGuard],
   },
   {
     path: 'schedule',
     loadComponent: () =>
-      import('./pages/schedule/schedule.component').then(
+      import('./features/schedule/schedule.component').then(
         (m) => m.ScheduleComponent
       ),
     canActivate: [authGuard],
@@ -25,19 +25,19 @@ export const routes: Routes = [
   {
     path: 'login',
     loadComponent: () =>
-      import('./pages/login/login.component').then((m) => m.LoginComponent),
+      import('./features/login/login.component').then((m) => m.LoginComponent),
   },
   {
     path: 'register',
     loadComponent: () =>
-      import('./pages/register/register.component').then(
+      import('./features/register/register.component').then(
         (m) => m.RegisterComponent
       ),
   },
   {
     path: 'profile',
     loadComponent: () =>
-      import('./pages/profile/profile.component').then(
+      import('./features/profile/profile.component').then(
         (m) => m.ProfileComponent
       ),
     canActivate: [authGuard],
@@ -45,20 +45,20 @@ export const routes: Routes = [
   {
     path: 'movies',
     loadComponent: () =>
-      import('./pages/movies/movies.component').then((m) => m.MoviesComponent),
+      import('./features/movies/movies.component').then((m) => m.MoviesComponent),
     canActivate: [authGuard],
   },
   {
     path: 'tickets',
     loadComponent: () =>
-      import('./pages/tickets/tickets.component').then(
+      import('./features/tickets/tickets.component').then(
         (m) => m.TicketsComponent
       ),
   },
 
   {
     path: 'movie/:id',
-    loadComponent: () => import('./pages/book-movie/book-movie.component').then(m => m.BookMovieComponent),
+    loadComponent: () => import('./features/book-movie/book-movie.component').then(m => m.BookMovieComponent),
     canActivate: [authGuard]
   }
   

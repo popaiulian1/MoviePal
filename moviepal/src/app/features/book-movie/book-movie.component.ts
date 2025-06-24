@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieDetailed } from '../../interfaces/movie-detailed.interface';
-import { MovieService } from '../../services/movie.service';
+import { MovieDetailed } from '../../core/interfaces/movie-detailed.interface';
+import { MovieService } from '../../core/services/movie.service';
 import { Router } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { AuthService } from '../../services/auth.service';
-import { BASE_API_URL } from '../../utils/api.url';
+import { AuthService } from '../../core/services/auth.service';
+import { BASE_API_URL } from '../../core/utils/api.url';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Ticket } from '../../interfaces/ticket.interface';
+import { Ticket } from '../../core/interfaces/ticket.interface';
 
 @Component({
   selector: 'app-book-movie',
