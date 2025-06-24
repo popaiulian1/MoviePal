@@ -11,7 +11,6 @@ import { provideNzIcons } from 'ng-zorro-antd/icon';
 import { IconDefinition } from '@ant-design/icons-angular';
 import { LeftOutline, UserOutline } from '@ant-design/icons-angular/icons';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { AuthInterceptor } from './interceptors/auth.interceptor';
 registerLocaleData(en);
 
 const icons: IconDefinition[] = [LeftOutline, UserOutline];
@@ -24,11 +23,6 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(FormsModule),
     provideAnimations(), 
     provideNzIcons(icons),
-    provideHttpClient(withInterceptorsFromDi()),
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    }
+    provideHttpClient()
   ]
 };
